@@ -1,0 +1,301 @@
+openapi: 3.0.0
+info:
+  title: Puntospoint API
+  version: 1.0.0
+  contact:
+    name: César Parra
+    email: cesar.parra@puntospoint.com
+    url: 'https://www.puntospoint.com'
+  license:
+    name: Apache-2.0
+    url: 'https://opensource.org/licenses/Apache-2.0'
+  x-logo:
+    url: "https://canjeonline-cmrpuntos.puntospoint.com/static/media/logopuntospoint.e1d7d96a.svg"
+    backgroundColor: "transparent"
+    altText: "Puntospoint"
+  description: |
+    Bienvenido a la documentación oficial de los servicios de Puntospoint (API Rest).
+servers:
+  - url: https://api.puntospoint.com
+    description: API para ambiente de producción
+  - url: https://api-qa.puntospoint.com
+    description: API para ambiente de pruebas
+paths:
+  /login:
+    post:
+      summary: Login
+      description: Endpoint para obtener token para la autorización de requests (JWT).
+      operationId: login
+      parameters:
+        - in: header
+          name: Authorization
+          schema:
+            type: string
+            format: base64
+          required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                type: string
+                format: jwt
+              examples:
+                success:
+                  summary: JSON Web Token
+                  value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwcnVlYmEiLCJpYXQiOjE1MTYyMzkwMjJ9.NBd9pvgsp5kBEC26-4vu-kYSyvlaN4YTQDtytwvioII
+  /vouchers/carts:
+    post:
+      tags:
+        - Vouchers Cart
+      summary: Crear carro de compra con vouchers
+      description: Para reservar vouchers de un carrito se debe ejecutar este endpoint.
+      operationId: vouchersCartCreate
+      responses:
+        201:
+          description: Carro creado con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/cart_detail_response'
+              example:
+                $ref: '#/components/examples/success_cart_creation_response'
+      deprecated: false
+      security:
+        - JWT: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/cart_creation_request'
+    summary: ''
+  /vouchers/carts/{id}/confirm_payment:
+    get:
+      tags:
+        - Vouchers Cart
+      summary: Confirma el pago de un carro de compras
+      description: Una vez creado el carro de compra, si se cofirma el pago realizando la ejecución de este endpoint, entonces el carro se marca como pagado y se realizan los envíos de los vouchers al cliente.
+      operationId: vouchersCartConfirmById
+      parameters:
+        - name: id
+          in: path
+          description: Cart Id
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Carro confirmado con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/cart_detail_response'
+              example:
+                $ref: '#/components/examples/success_cart_confirm_response'
+        404:
+          description: Carro no encontrado
+
+      deprecated: false
+      security:
+        - JWT: []
+      requestBody:
+        required: false
+    summary: ''
+  /vouchers/carts/{id}/void:
+    get:
+      tags:
+        - Vouchers Cart
+      summary: Anula la creación de carro y los vouchers asociados.
+      description: Una vez creado el carro de compra, si no se cofirma el pago, entonces puedes liberar el stock reservado del carro. Esta acción es irreversible.
+      operationId: vouchersCartVoidId
+      parameters:
+        - name: id
+          in: path
+          description: Cart Id
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Carro confirmado con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/cart_detail_response'
+              example:
+                $ref: '#/components/examples/success_cart_void_response'
+        404:
+          description: Carro no encontrado
+
+      deprecated: false
+      security:
+        - JWT: []
+      requestBody:
+        required: false
+    summary: ''
+components:
+  links: {}
+  callbacks: {}
+  examples:
+    success_cart_creation_response:
+      id_0: 68dd09b9ff11f0df5624a690fe0f6729
+      rut: 111111111
+      email: contacto@puntospoint.cl
+      state: created
+      created_at: 20/09/2021 10:55
+      paid_at:
+      vouchers:
+        -
+          state: sold
+          code: 123456789010
+          validated_at:
+          experience_name: 2 entradas al cine
+          validity_starting_at: 17/09/2021
+          validity_ending_at: 31/12/2021
+          eco_name: Cine Mundial
+          points: 0
+          amount: 5000
+          price: 4500
+    success_cart_confirm_response:
+      id_0: 68dd09b9ff11f0df5624a690fe0f6729
+      rut: 111111111
+      email: contacto@puntospoint.cl
+      state: paid
+      created_at: 20/09/2021 10:55
+      paid_at: 20/09/2021 11:55
+      vouchers:
+        -
+          state: sold
+          code: 123456789010
+          validated_at:
+          experience_name: 2 entradas al cine
+          validity_starting_at: 17/09/2021
+          validity_ending_at: 31/12/2021
+          eco_name: Cine Mundial
+          points: 0
+          amount: 5000
+          price: 4500
+    success_cart_void_response:
+      id_0: 68dd09b9ff11f0df5624a690fe0f6729
+      rut: 111111111
+      email: contacto@puntospoint.cl
+      state: paid
+      created_at: 20/09/2021 10:55
+      paid_at:
+      vouchers:
+        -
+          state: redeemed
+          code: 123456789010
+          validated_at:
+          experience_name: 2 entradas al cine
+          validity_starting_at: 17/09/2021
+          validity_ending_at: 31/12/2021
+          eco_name: Cine Mundial
+          points: 0
+          amount: 5000
+          price: 4500
+  schemas:
+    cart_detail_response:
+      type: object
+      properties:
+        id_0:
+          type: string
+          description: Id de carro de compra
+        rut:
+          type: string
+          description: Rut de cliente asociado al carrito de compra
+        state:
+          type: string
+          enum:
+            - created
+            - paid
+            - expired
+          descripción: Estado del carro de compras
+        created_at:
+          type: string
+          description: Fecha y hora de creación del carro de compra
+        paid_at:
+          type: string
+          description: Fecha y hora de pago carro de compra
+        vouchers:
+          type: array
+          description: Listado de vouchers
+          items:
+            type: object
+            properties:
+              state:
+                type: string
+                description: Estado
+                enum:
+                  - sold
+                  - validated
+                  - redeemed
+              code:
+                type: string
+                description: Código de seguridad
+              validated_at:
+                type: string
+                description: Fecha y hora de validación (state = validated)
+              experience_name:
+                type: string
+                description: Nombre de experiencia
+              validity_starting_at:
+                type: string
+                description: Fecha desde la cual se puede hacer uso del voucher en el comercio
+              validity_ending_at:
+                type: string
+                description: Fecha hasta la cual se puede hacer uso del voucher en el comercio
+              eco_name:
+                type: string
+                description: Nombre del proveedor
+              points:
+                type: number
+                description: Puntos utilizados en la compra del voucher
+              amount:
+                type: number
+                description: Dinero utilizado en al compra del voucher
+              price:
+                type: number
+                description: Costo del voucher
+
+    cart_creation_request:
+      type: object
+      example:
+        rut: 111111111
+        email: contacto@puntospoint.cl
+        items:
+          - exchange_id_0: 6709e8d64a5f47269ed5cea9f625f7ab
+            amout: 1
+      properties:
+        rut:
+          type: string
+          description: Rut de Cliente
+        email:
+          type: string
+          description: >-
+            Email del cliente, al cual se le enviarán los vouchers una vez
+            confirmado el carro
+        items:
+          type: array
+          description: Vouchers items
+          items:
+            type: object
+            properties:
+              exchange_id_0:
+                type: string
+                description: Id de Opción de compra escogida
+              amount:
+                type: string
+                description: Cantidad de vouchers del item
+  securitySchemes:
+    JWT:
+      type: http
+      scheme: bearer
+      bearerFormat: jwt
+      description: |
+        Para ser autorizado para acceder a los endpoints de Puntospoint lo debes hacer enviando el token (Bearer) obtenido en el **login**.
+        Para más información, véase https://jwt.io/
+tags:
+  - name: Vouchers Cart
+    description: Creación de vouchers utilizando un carro de compras.
