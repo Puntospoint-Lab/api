@@ -21,6 +21,55 @@ servers:
   - url: https://api-qa.puntospoint.com
     description: API para ambiente de pruebas
 paths:
+  /events/actived:
+    get:
+      tags:
+        - events
+      summary: Listado de eventos activos
+      description: Listado de experiencias elegidas para el catálogo
+      operationId: getActiveEvents
+      deprecated: false
+      security:
+        - JWT: []
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/actived_events_response'
+  /events/actived/exchanges:
+    get:
+      tags:
+        - events
+      summary: Opciones de compras activas
+      description: Listado de todas las opciones de compra disponibles para los eventos activos
+      operationId: getActiveExchangesEvents
+      deprecated: false
+      security:
+        - JWT: []
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/actived_exchanges_response'
+  /events/actived/stocks:
+    get:
+      tags:
+        - events
+      summary: Stocks de eventos activos
+      description: Listado de todas las opciones de compra disponibles para los eventos activos
+      operationId: getActiveStocksEvents
+      deprecated: false
+      security:
+        - JWT: []
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/actived_stocks_response'
+
   /login:
     post:
       summary: Login
@@ -47,7 +96,7 @@ paths:
   /vouchers/carts:
     post:
       tags:
-        - Vouchers Cart
+        - vouchers_cart
       summary: Crear carro de compra con vouchers
       description: Para reservar vouchers de un carrito se debe ejecutar este endpoint.
       operationId: vouchersCartCreate
@@ -73,7 +122,7 @@ paths:
   /vouchers/carts/{id}/confirm_payment:
     get:
       tags:
-        - Vouchers Cart
+        - vouchers_cart
       summary: Confirma el pago de un carro de compras
       description: Una vez creado el carro de compra, si se cofirma el pago realizando la ejecución de este endpoint, entonces el carro se marca como pagado y se realizan los envíos de los vouchers al cliente.
       operationId: vouchersCartConfirmById
@@ -105,7 +154,7 @@ paths:
   /vouchers/carts/{id}/void:
     get:
       tags:
-        - Vouchers Cart
+        - vouchers_cart
       summary: Anula la creación de carro y los vouchers asociados.
       description: Una vez creado el carro de compra, si no se cofirma el pago, entonces puedes liberar el stock reservado del carro. Esta acción es irreversible.
       operationId: vouchersCartVoidId
@@ -196,6 +245,28 @@ components:
           amount: 5000
           price: 4500
   schemas:
+    events_exchanges:
+      type: array
+      description: Listado de opciones de compras disponibles
+      items:
+        type: object
+        properties:
+          id_0:
+            type: string
+            description: Id de opción de compra
+          cash:
+            type: number
+            description: Monto en dinero requerido para comprar un voucher
+          points:
+            type: number
+            description: Puntos requeridos para canjear un voucher
+          discount_activated:
+            type: boolean
+            description: Si está o no activado el descuento (solo puntos)
+          discounted_points:
+            type: number
+            description: Puntos en descuento
+
     cart_detail_response:
       type: object
       properties:
@@ -288,6 +359,123 @@ components:
               amount:
                 type: string
                 description: Cantidad de vouchers del item
+
+    actived_stocks_response:
+      type: array
+      items:
+        type: object
+        properties:
+          id_0:
+            type: string
+            description: Id del event
+          sku:
+            type: string
+            description: Sku del evento
+          swaps:
+            type: number
+            description: Initial stock
+          purchases_count:
+            type: number
+            description: Cantidad de compras o canjes asociados
+          available_stock:
+            type: number
+            description: Cantidad de stock remanente (stock inicial - compras)
+
+    actived_exchanges_response:
+      type: array
+      items:
+        type: object
+        properties:
+          id_0:
+            type: string
+            description: Id del event
+          sku:
+            type: string
+            description: Sku del evento
+          exchanges:
+            $ref: '#/components/schemas/events_exchanges'
+
+    actived_events_response:
+      type: array
+      items:
+        type: object
+        properties:
+          id_0:
+            type: string
+            description: Id del evento
+          state:
+            type: string
+            description: Estado del evento
+            enum:
+              - published
+              - taken
+          swaps:
+            type: number
+            description: Initial stock
+          purchases_count:
+            type: number
+            description: Cantidad de compras o canjes asociados
+          available_stock:
+            type: number
+            description: Cantidad de stock remanente (stock inicial - compras)
+          sku:
+            type: string
+            description: SKU del evento
+          starting_at:
+            type: string
+            description: Fecha desde la cual está disponible para registrar compras
+          ending_at:
+            type: string
+            description: Fecha hasta la cual está disponible para registrar compras
+          validity_starting_at:
+            type: string
+            description: Fecha desde la cual se puede hacer uso de los vouchers en el comercio
+          validity_ending_at:
+            type: string
+            description: Fecha hasta la cual se puede hacer uso de los vouchers en el comercio
+          client_confirm_message:
+            type: string
+            description: Mensaje que debe aceptar el cliente antes de realizar la compra.
+            format: html
+          eco:
+            type: object
+            description: Información respecto al proveedor de la experiencia
+            properties:
+              fancy_name:
+                type: string
+                description: Nombre comercial del proveedor
+          experience:
+            type: object
+            description: Información respecto a la experiencia
+            properties:
+              name:
+                type: string
+                description: Nombre de la experiencia o giftcard
+              image_url:
+                type: string
+                description: Url de imagen principal
+                format: uri
+              experience_images:
+                type: array
+                description: Listado de urls de imagenes adicionales
+              details:
+                type: string
+                description: Detalles o descripción de la experiencia
+                format: html
+              conditions:
+                type: string
+                description: Condiciones de la experiencia
+                format: html
+              addresses:
+                type: string
+                description: Direcciones de donde se puede hacer uso el voucher
+                format: html
+              exchange_mechanism:
+                type: string
+                description: Instrucciones de uso del voucher
+                format: html
+          exchanges:
+            $ref: '#/components/schemas/events_exchanges'
   securitySchemes:
     JWT:
       type: http
@@ -297,5 +485,5 @@ components:
         Para ser autorizado para acceder a los endpoints de Puntospoint lo debes hacer enviando el token (Bearer) obtenido en el **login**.
         Para más información, véase https://jwt.io/
 tags:
-  - name: Vouchers Cart
+  - name: vouchers_cart
     description: Creación de vouchers utilizando un carro de compras.
