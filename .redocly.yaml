@@ -1,0 +1,5 @@
+referenceDocs:
+  disableSearch: true
+  theme:
+    logo:
+      gutter: "20px"
