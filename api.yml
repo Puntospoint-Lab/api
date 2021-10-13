@@ -21,7 +21,7 @@ servers:
   - url: https://api-qa.puntospoint.com
     description: API para ambiente de pruebas
 paths:
-  /events/actived:
+  /element/clients/events/available:
     get:
       tags:
         - events
@@ -37,7 +37,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/actived_events_response'
-  /events/actived/exchanges:
+  /element/clients/events/available/exchanges:
     get:
       tags:
         - events
@@ -53,7 +53,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/actived_exchanges_response'
-  /events/actived/stocks:
+  /element/clients/events/available/stocks:
     get:
       tags:
         - events
@@ -70,7 +70,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/actived_stocks_response'
 
-  /login:
+  /element/login:
     post:
       summary: Login
       description: Endpoint para obtener token para la autorización de requests (JWT).
@@ -93,7 +93,7 @@ paths:
                 success:
                   summary: JSON Web Token
                   value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwcnVlYmEiLCJpYXQiOjE1MTYyMzkwMjJ9.NBd9pvgsp5kBEC26-4vu-kYSyvlaN4YTQDtytwvioII
-  /vouchers/carts:
+  /element/clients/vouchers/carts:
     post:
       tags:
         - vouchers_cart
@@ -117,7 +117,7 @@ paths:
             schema:
               $ref: '#/components/schemas/cart_creation_request'
     summary: ''
-  /vouchers/carts/{id}:
+  /element/clients/vouchers/carts/{id}:
     get:
       tags:
         - vouchers_cart
@@ -143,7 +143,7 @@ paths:
         - JWT: []
       requestBody:
         required: false
-  /vouchers/carts/{id}/checkout:
+  /element/clients/vouchers/carts/{id}/checkout:
     post:
       tags:
         - vouchers_cart
@@ -178,7 +178,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/cart_checkout_request'
-  /vouchers/carts/{id}/confirm_payment:
+  /element/clients/vouchers/carts/{id}/confirm:
     post:
       tags:
         - vouchers_cart
@@ -210,7 +210,7 @@ paths:
       requestBody:
         required: false
     summary: ''
-  /vouchers/carts/{id}/void:
+  /element/clients/vouchers/carts/{id}/void:
     post:
       tags:
         - vouchers_cart
