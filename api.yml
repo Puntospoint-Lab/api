@@ -117,6 +117,32 @@ paths:
             schema:
               $ref: '#/components/schemas/cart_creation_request'
     summary: ''
+  /vouchers/carts/{id}:
+    get:
+      tags:
+        - vouchers_cart
+      summary: Obtiene información de un carro.
+      operationId: vouchersCartById
+      parameters:
+        - name: id
+          in: path
+          description: Cart Id
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/cart_detail_response'
+        404:
+          description: Carro no encontrado
+      deprecated: false
+      security:
+        - JWT: []
+      requestBody:
+        required: false
   /vouchers/carts/{id}/checkout:
     post:
       tags:
