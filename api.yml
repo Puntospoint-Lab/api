@@ -107,6 +107,57 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/cart_detail_response'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/cart_detail_response'
+              example: |
+                <?xml version="1.0" encoding="UTF-8">
+                  <cart>
+                    <rut>string</rut>
+                    <email>string</email>
+                    <created-at>string</created-at>
+                    <id-0>string</id-0>
+                    <paid-at>string</paid-at>
+                    <state>string</state>
+                    <cart-exchanges>
+                      <cart-exchange>
+                        <created-at>string</created-at>
+                        <amount>number</amount>
+                        <id-0>string</id-0>
+                        <exchange>
+                          <cash>number</cash>
+                          <points>number</points>
+                          <discount-activated>boolean</discount-activated>
+                          <discounted-points>number</discounted-points>
+                          <id-0>c81e728d9d4c2f636f067f89cc14862c</id-0>
+                          <product>
+                            <id-0>string</id-0>
+                            <state>string</state>
+                            <sku>string</sku>
+                            <starting-at>string</starting-at>
+                            <ending-at>string</ending-at>
+                            <validity-starting-at>string</validity-starting-at>
+                            <validity-ending-at>string</validity-ending-at>
+                            <clients-confirm-message>string</clients-confirm-message>
+                            <stock>
+                              <available-stock>number</available-stock>
+                              <swaps>number</swaps>
+                              <purchases-count>number</purchases-count>
+                            </stock>
+                            <eco>
+                              <fancy-name>string</fancy-name>
+                            </eco>
+                            <experience>
+                              <name>string</name>
+                              <image-url>string</image-url>
+                            </experience>
+                          </product>
+                        </exchange>
+                      </cart-exchange>
+                    </cart-exchanges>
+                    <vouchers/>
+                  </cart>
+                </xml>
       deprecated: false
       security:
         - JWT: []
@@ -136,6 +187,57 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/cart_detail_response'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/cart_detail_response'
+              example: |
+                <?xml version="1.0" encoding="UTF-8">
+                  <cart>
+                    <rut>string</rut>
+                    <email>string</email>
+                    <created-at>string</created-at>
+                    <id-0>string</id-0>
+                    <paid-at>string</paid-at>
+                    <state>string</state>
+                    <cart-exchanges>
+                      <cart-exchange>
+                        <created-at>string</created-at>
+                        <amount>number</amount>
+                        <id-0>string</id-0>
+                        <exchange>
+                          <cash>number</cash>
+                          <points>number</points>
+                          <discount-activated>boolean</discount-activated>
+                          <discounted-points>number</discounted-points>
+                          <id-0>c81e728d9d4c2f636f067f89cc14862c</id-0>
+                          <product>
+                            <id-0>string</id-0>
+                            <state>string</state>
+                            <sku>string</sku>
+                            <starting-at>string</starting-at>
+                            <ending-at>string</ending-at>
+                            <validity-starting-at>string</validity-starting-at>
+                            <validity-ending-at>string</validity-ending-at>
+                            <clients-confirm-message>string</clients-confirm-message>
+                            <stock>
+                              <available-stock>number</available-stock>
+                              <swaps>number</swaps>
+                              <purchases-count>number</purchases-count>
+                            </stock>
+                            <eco>
+                              <fancy-name>string</fancy-name>
+                            </eco>
+                            <experience>
+                              <name>string</name>
+                              <image-url>string</image-url>
+                            </experience>
+                          </product>
+                        </exchange>
+                      </cart-exchange>
+                    </cart-exchanges>
+                    <vouchers/>
+                  </cart>
+                </xml>
         404:
           description: Carro no encontrado
       deprecated: false
@@ -164,6 +266,57 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/cart_detail_response'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/cart_detail_response'
+              example: |
+                <?xml version="1.0" encoding="UTF-8">
+                  <cart>
+                    <rut>string</rut>
+                    <email>string</email>
+                    <created-at>string</created-at>
+                    <id-0>string</id-0>
+                    <paid-at>string</paid-at>
+                    <state>string</state>
+                    <cart-exchanges>
+                      <cart-exchange>
+                        <created-at>string</created-at>
+                        <amount>number</amount>
+                        <id-0>string</id-0>
+                        <exchange>
+                          <cash>number</cash>
+                          <points>number</points>
+                          <discount-activated>boolean</discount-activated>
+                          <discounted-points>number</discounted-points>
+                          <id-0>c81e728d9d4c2f636f067f89cc14862c</id-0>
+                          <product>
+                            <id-0>string</id-0>
+                            <state>string</state>
+                            <sku>string</sku>
+                            <starting-at>string</starting-at>
+                            <ending-at>string</ending-at>
+                            <validity-starting-at>string</validity-starting-at>
+                            <validity-ending-at>string</validity-ending-at>
+                            <clients-confirm-message>string</clients-confirm-message>
+                            <stock>
+                              <available-stock>number</available-stock>
+                              <swaps>number</swaps>
+                              <purchases-count>number</purchases-count>
+                            </stock>
+                            <eco>
+                              <fancy-name>string</fancy-name>
+                            </eco>
+                            <experience>
+                              <name>string</name>
+                              <image-url>string</image-url>
+                            </experience>
+                          </product>
+                        </exchange>
+                      </cart-exchange>
+                    </cart-exchanges>
+                    <vouchers/>
+                  </cart>
+                </xml>
         404:
           description: Carro no encontrado
         412:
@@ -199,6 +352,57 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/cart_detail_response'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/cart_detail_response'
+              example: |
+                <?xml version="1.0" encoding="UTF-8">
+                  <cart>
+                    <rut>string</rut>
+                    <email>string</email>
+                    <created-at>string</created-at>
+                    <id-0>string</id-0>
+                    <paid-at>string</paid-at>
+                    <state>string</state>
+                    <cart-exchanges>
+                      <cart-exchange>
+                        <created-at>string</created-at>
+                        <amount>number</amount>
+                        <id-0>string</id-0>
+                        <exchange>
+                          <cash>number</cash>
+                          <points>number</points>
+                          <discount-activated>boolean</discount-activated>
+                          <discounted-points>number</discounted-points>
+                          <id-0>c81e728d9d4c2f636f067f89cc14862c</id-0>
+                          <product>
+                            <id-0>string</id-0>
+                            <state>string</state>
+                            <sku>string</sku>
+                            <starting-at>string</starting-at>
+                            <ending-at>string</ending-at>
+                            <validity-starting-at>string</validity-starting-at>
+                            <validity-ending-at>string</validity-ending-at>
+                            <clients-confirm-message>string</clients-confirm-message>
+                            <stock>
+                              <available-stock>number</available-stock>
+                              <swaps>number</swaps>
+                              <purchases-count>number</purchases-count>
+                            </stock>
+                            <eco>
+                              <fancy-name>string</fancy-name>
+                            </eco>
+                            <experience>
+                              <name>string</name>
+                              <image-url>string</image-url>
+                            </experience>
+                          </product>
+                        </exchange>
+                      </cart-exchange>
+                    </cart-exchanges>
+                    <vouchers/>
+                  </cart>
+                </xml>
         404:
           description: Carro no encontrado
         412:
@@ -231,6 +435,57 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/cart_detail_response'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/cart_detail_response'
+              example: |
+                <?xml version="1.0" encoding="UTF-8">
+                  <cart>
+                    <rut>string</rut>
+                    <email>string</email>
+                    <created-at>string</created-at>
+                    <id-0>string</id-0>
+                    <paid-at>string</paid-at>
+                    <state>string</state>
+                    <cart-exchanges>
+                      <cart-exchange>
+                        <created-at>string</created-at>
+                        <amount>number</amount>
+                        <id-0>string</id-0>
+                        <exchange>
+                          <cash>number</cash>
+                          <points>number</points>
+                          <discount-activated>boolean</discount-activated>
+                          <discounted-points>number</discounted-points>
+                          <id-0>c81e728d9d4c2f636f067f89cc14862c</id-0>
+                          <product>
+                            <id-0>string</id-0>
+                            <state>string</state>
+                            <sku>string</sku>
+                            <starting-at>string</starting-at>
+                            <ending-at>string</ending-at>
+                            <validity-starting-at>string</validity-starting-at>
+                            <validity-ending-at>string</validity-ending-at>
+                            <clients-confirm-message>string</clients-confirm-message>
+                            <stock>
+                              <available-stock>number</available-stock>
+                              <swaps>number</swaps>
+                              <purchases-count>number</purchases-count>
+                            </stock>
+                            <eco>
+                              <fancy-name>string</fancy-name>
+                            </eco>
+                            <experience>
+                              <name>string</name>
+                              <image-url>string</image-url>
+                            </experience>
+                          </product>
+                        </exchange>
+                      </cart-exchange>
+                    </cart-exchanges>
+                    <vouchers/>
+                  </cart>
+                </xml>
         404:
           description: Carro no encontrado
         412:
@@ -268,21 +523,6 @@ components:
           discounted_points:
             type: number
             description: Puntos en descuento
-
-    cart_detail_xml_response:
-      type: "object"
-      properties: 
-        coordinate: 
-          type: "object"
-          properties: 
-            format: 
-              type: "string"
-              xml: 
-                attribute: true 
-            value: 
-              type: "string"
-              xml:
-                text: true
 
     cart_detail_response:
       type: object
