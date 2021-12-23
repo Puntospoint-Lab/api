@@ -37,6 +37,36 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/actived_events_response'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/actived_events_response'
+              example: |
+                <?xml version="1.0" encoding="UTF-8"?>
+                  <products>
+                    <product>
+                      <id-0>string</id-0>
+                      <state>string</state>
+                      <sku>string</sku>
+                      <starting-at>string</starting-at>
+                      <ending-at>string</ending-at>
+                      <validity-starting-at>string</validity-starting-at>
+                      <validity-ending-at>string</validity-ending-at>
+                      <clients-confirm-message>string</clients-confirm-message>
+                      <stock>
+                        <available-stock>number</available-stock>
+                        <swaps>number</swaps>
+                        <purchases-count>number</purchases-count>
+                      </stock>
+                      <eco>
+                        <fancy-name>string</fancy-name>
+                      </eco>
+                      <experience>
+                        <name>string</name>
+                        <image-url>string</image-url>
+                      </experience>
+                    </product>
+                  </products>
+                
   /element/clients/events/available/exchanges:
     get:
       tags:
@@ -53,6 +83,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/actived_exchanges_response'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/actived_exchanges_response'
+              example: |
+                <?xml version="1.0" encoding="UTF-8"?>
+                  <products>
+                    <product>
+                      <id>string</id>
+                      <sku>string</sku>
+                      <exchanges>
+                        <exchange>
+                          <id>string</id>
+                          <points>number</points>
+                          <cash>number</cash>
+                          <discount-activated>boolean</discount-activated>
+                          <discounted-points>number</discounted-points>
+                        </exchange>
+                      </exchanges>
+                    </product>
+                  </products>
+                
   /element/clients/events/available/stocks:
     get:
       tags:
@@ -69,6 +120,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/actived_stocks_response'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/actived_stocks_response'
+              example: |
+                <?xml version="1.0" encoding="UTF-8"?>
+                  <products>
+                    <product>
+                      <id>string</id>
+                      <sku>string</sku>
+                      <stock>
+                        <available-stock>number</available-stock>
+                        <swaps>number</swaps>
+                        <purchases-count>number</purchases-count>
+                      </stock>
+                    </product>
+                  </products>
+                
 
   /element/login:
     post:
@@ -157,7 +225,7 @@ paths:
                     </cart-exchanges>
                     <vouchers/>
                   </cart>
-                </xml>
+                
       deprecated: false
       security:
         - JWT: []
@@ -167,6 +235,18 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/cart_creation_request'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/cart_creation_request'
+            example: |
+              <?xml version="1.0"?>
+              <cart-exchanges-attributes type="array">
+                <cart-exchanges-attribute>
+                  <exchange-id-0>string</exchange-id-0>
+                  <amount>number</amount>
+                </cart-exchanges-attribute>
+              </cart-exchanges-attributes>
+
     summary: ''
   /element/clients/vouchers/carts/{id}:
     get:
@@ -237,7 +317,7 @@ paths:
                     </cart-exchanges>
                     <vouchers/>
                   </cart>
-                </xml>
+                
         404:
           description: Carro no encontrado
       deprecated: false
@@ -316,7 +396,7 @@ paths:
                     </cart-exchanges>
                     <vouchers/>
                   </cart>
-                </xml>
+                
         404:
           description: Carro no encontrado
         412:
@@ -331,6 +411,15 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/cart_checkout_request'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/cart_checkout_request'
+            example: |
+              <?xml version="1.0"?>
+              <checkout>
+                <rut>string</rut>
+                <email>string</email>
+              </checkout>
   /element/clients/vouchers/carts/{id}/confirm:
     post:
       tags:
@@ -402,7 +491,7 @@ paths:
                     </cart-exchanges>
                     <vouchers/>
                   </cart>
-                </xml>
+                
         404:
           description: Carro no encontrado
         412:
@@ -485,7 +574,7 @@ paths:
                     </cart-exchanges>
                     <vouchers/>
                   </cart>
-                </xml>
+                
         404:
           description: Carro no encontrado
         412:
