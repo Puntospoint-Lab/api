@@ -25,7 +25,7 @@ paths:
     get:
       tags:
         - events
-      summary: Listado de eventos activos
+      summary: Listado de productos activos
       description: Listado de experiencias elegidas para el catálogo
       operationId: getActiveEvents
       deprecated: false
@@ -42,7 +42,7 @@ paths:
       tags:
         - events
       summary: Opciones de compras activas
-      description: Listado de todas las opciones de compra disponibles para los eventos activos
+      description: Listado de todas las opciones de compra disponibles para los productos activos
       operationId: getActiveExchangesEvents
       deprecated: false
       security:
@@ -57,8 +57,8 @@ paths:
     get:
       tags:
         - events
-      summary: Stocks de eventos activos
-      description: Listado de todas las opciones de compra disponibles para los eventos activos
+      summary: Stocks de productos activos
+      description: Listado de todas las opciones de compra disponibles para los productos activos
       operationId: getActiveStocksEvents
       deprecated: false
       security:
@@ -107,6 +107,57 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/cart_detail_response'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/cart_detail_response'
+              example: |
+                <?xml version="1.0" encoding="UTF-8">
+                  <cart>
+                    <rut>string</rut>
+                    <email>string</email>
+                    <created-at>string</created-at>
+                    <id-0>string</id-0>
+                    <paid-at>string</paid-at>
+                    <state>string</state>
+                    <cart-exchanges>
+                      <cart-exchange>
+                        <created-at>string</created-at>
+                        <amount>number</amount>
+                        <id-0>string</id-0>
+                        <exchange>
+                          <cash>number</cash>
+                          <points>number</points>
+                          <discount-activated>boolean</discount-activated>
+                          <discounted-points>number</discounted-points>
+                          <id-0>c81e728d9d4c2f636f067f89cc14862c</id-0>
+                          <product>
+                            <id-0>string</id-0>
+                            <state>string</state>
+                            <sku>string</sku>
+                            <starting-at>string</starting-at>
+                            <ending-at>string</ending-at>
+                            <validity-starting-at>string</validity-starting-at>
+                            <validity-ending-at>string</validity-ending-at>
+                            <clients-confirm-message>string</clients-confirm-message>
+                            <stock>
+                              <available-stock>number</available-stock>
+                              <swaps>number</swaps>
+                              <purchases-count>number</purchases-count>
+                            </stock>
+                            <eco>
+                              <fancy-name>string</fancy-name>
+                            </eco>
+                            <experience>
+                              <name>string</name>
+                              <image-url>string</image-url>
+                            </experience>
+                          </product>
+                        </exchange>
+                      </cart-exchange>
+                    </cart-exchanges>
+                    <vouchers/>
+                  </cart>
+                </xml>
       deprecated: false
       security:
         - JWT: []
@@ -136,6 +187,57 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/cart_detail_response'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/cart_detail_response'
+              example: |
+                <?xml version="1.0" encoding="UTF-8">
+                  <cart>
+                    <rut>string</rut>
+                    <email>string</email>
+                    <created-at>string</created-at>
+                    <id-0>string</id-0>
+                    <paid-at>string</paid-at>
+                    <state>string</state>
+                    <cart-exchanges>
+                      <cart-exchange>
+                        <created-at>string</created-at>
+                        <amount>number</amount>
+                        <id-0>string</id-0>
+                        <exchange>
+                          <cash>number</cash>
+                          <points>number</points>
+                          <discount-activated>boolean</discount-activated>
+                          <discounted-points>number</discounted-points>
+                          <id-0>c81e728d9d4c2f636f067f89cc14862c</id-0>
+                          <product>
+                            <id-0>string</id-0>
+                            <state>string</state>
+                            <sku>string</sku>
+                            <starting-at>string</starting-at>
+                            <ending-at>string</ending-at>
+                            <validity-starting-at>string</validity-starting-at>
+                            <validity-ending-at>string</validity-ending-at>
+                            <clients-confirm-message>string</clients-confirm-message>
+                            <stock>
+                              <available-stock>number</available-stock>
+                              <swaps>number</swaps>
+                              <purchases-count>number</purchases-count>
+                            </stock>
+                            <eco>
+                              <fancy-name>string</fancy-name>
+                            </eco>
+                            <experience>
+                              <name>string</name>
+                              <image-url>string</image-url>
+                            </experience>
+                          </product>
+                        </exchange>
+                      </cart-exchange>
+                    </cart-exchanges>
+                    <vouchers/>
+                  </cart>
+                </xml>
         404:
           description: Carro no encontrado
       deprecated: false
@@ -164,6 +266,57 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/cart_detail_response'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/cart_detail_response'
+              example: |
+                <?xml version="1.0" encoding="UTF-8">
+                  <cart>
+                    <rut>string</rut>
+                    <email>string</email>
+                    <created-at>string</created-at>
+                    <id-0>string</id-0>
+                    <paid-at>string</paid-at>
+                    <state>string</state>
+                    <cart-exchanges>
+                      <cart-exchange>
+                        <created-at>string</created-at>
+                        <amount>number</amount>
+                        <id-0>string</id-0>
+                        <exchange>
+                          <cash>number</cash>
+                          <points>number</points>
+                          <discount-activated>boolean</discount-activated>
+                          <discounted-points>number</discounted-points>
+                          <id-0>c81e728d9d4c2f636f067f89cc14862c</id-0>
+                          <product>
+                            <id-0>string</id-0>
+                            <state>string</state>
+                            <sku>string</sku>
+                            <starting-at>string</starting-at>
+                            <ending-at>string</ending-at>
+                            <validity-starting-at>string</validity-starting-at>
+                            <validity-ending-at>string</validity-ending-at>
+                            <clients-confirm-message>string</clients-confirm-message>
+                            <stock>
+                              <available-stock>number</available-stock>
+                              <swaps>number</swaps>
+                              <purchases-count>number</purchases-count>
+                            </stock>
+                            <eco>
+                              <fancy-name>string</fancy-name>
+                            </eco>
+                            <experience>
+                              <name>string</name>
+                              <image-url>string</image-url>
+                            </experience>
+                          </product>
+                        </exchange>
+                      </cart-exchange>
+                    </cart-exchanges>
+                    <vouchers/>
+                  </cart>
+                </xml>
         404:
           description: Carro no encontrado
         412:
@@ -199,6 +352,57 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/cart_detail_response'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/cart_detail_response'
+              example: |
+                <?xml version="1.0" encoding="UTF-8">
+                  <cart>
+                    <rut>string</rut>
+                    <email>string</email>
+                    <created-at>string</created-at>
+                    <id-0>string</id-0>
+                    <paid-at>string</paid-at>
+                    <state>string</state>
+                    <cart-exchanges>
+                      <cart-exchange>
+                        <created-at>string</created-at>
+                        <amount>number</amount>
+                        <id-0>string</id-0>
+                        <exchange>
+                          <cash>number</cash>
+                          <points>number</points>
+                          <discount-activated>boolean</discount-activated>
+                          <discounted-points>number</discounted-points>
+                          <id-0>c81e728d9d4c2f636f067f89cc14862c</id-0>
+                          <product>
+                            <id-0>string</id-0>
+                            <state>string</state>
+                            <sku>string</sku>
+                            <starting-at>string</starting-at>
+                            <ending-at>string</ending-at>
+                            <validity-starting-at>string</validity-starting-at>
+                            <validity-ending-at>string</validity-ending-at>
+                            <clients-confirm-message>string</clients-confirm-message>
+                            <stock>
+                              <available-stock>number</available-stock>
+                              <swaps>number</swaps>
+                              <purchases-count>number</purchases-count>
+                            </stock>
+                            <eco>
+                              <fancy-name>string</fancy-name>
+                            </eco>
+                            <experience>
+                              <name>string</name>
+                              <image-url>string</image-url>
+                            </experience>
+                          </product>
+                        </exchange>
+                      </cart-exchange>
+                    </cart-exchanges>
+                    <vouchers/>
+                  </cart>
+                </xml>
         404:
           description: Carro no encontrado
         412:
@@ -231,6 +435,57 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/cart_detail_response'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/cart_detail_response'
+              example: |
+                <?xml version="1.0" encoding="UTF-8">
+                  <cart>
+                    <rut>string</rut>
+                    <email>string</email>
+                    <created-at>string</created-at>
+                    <id-0>string</id-0>
+                    <paid-at>string</paid-at>
+                    <state>string</state>
+                    <cart-exchanges>
+                      <cart-exchange>
+                        <created-at>string</created-at>
+                        <amount>number</amount>
+                        <id-0>string</id-0>
+                        <exchange>
+                          <cash>number</cash>
+                          <points>number</points>
+                          <discount-activated>boolean</discount-activated>
+                          <discounted-points>number</discounted-points>
+                          <id-0>c81e728d9d4c2f636f067f89cc14862c</id-0>
+                          <product>
+                            <id-0>string</id-0>
+                            <state>string</state>
+                            <sku>string</sku>
+                            <starting-at>string</starting-at>
+                            <ending-at>string</ending-at>
+                            <validity-starting-at>string</validity-starting-at>
+                            <validity-ending-at>string</validity-ending-at>
+                            <clients-confirm-message>string</clients-confirm-message>
+                            <stock>
+                              <available-stock>number</available-stock>
+                              <swaps>number</swaps>
+                              <purchases-count>number</purchases-count>
+                            </stock>
+                            <eco>
+                              <fancy-name>string</fancy-name>
+                            </eco>
+                            <experience>
+                              <name>string</name>
+                              <image-url>string</image-url>
+                            </experience>
+                          </product>
+                        </exchange>
+                      </cart-exchange>
+                    </cart-exchanges>
+                    <vouchers/>
+                  </cart>
+                </xml>
         404:
           description: Carro no encontrado
         412:
@@ -331,61 +586,97 @@ components:
                   discounted_points:
                     type: number
                     description: Puntos en descuento
-                  event:
+                  product:
                     type: object
-                    description: Evento asociado a la opción de pago.
+                    description: Producto asociado a la opción de pago.
                     properties:
                       id_0:
                         type: string
-                        description: Id del evento
+                        description: Id del producto
                       state:
                         type: string
-                        description: Estado del evento
+                        description: Estado del producto
                         enum:
                           - published
                           - taken
-                      swaps:
-                        type: number
-                        description: Initial stock
-                      purchases_count:
-                        type: number
-                        description: Cantidad de compras o canjes asociados
-                      available_stock:
-                        type: number
-                        description: Cantidad de stock remanente (stock inicial - compras)
-                      sku:
+                      client_confirm_message:
                         type: string
-                        description: SKU del evento
-                      starting_at:
-                        type: string
-                        description: Fecha desde la cual está disponible para registrar compras
-                      ending_at:
-                        type: string
-                        description: Fecha hasta la cual está disponible para registrar compras
-                      validity_starting_at:
-                        type: string
-                        description: Fecha desde la cual se puede hacer uso de los vouchers en el comercio
-                      validity_ending_at:
-                        type: string
-                        description: Fecha hasta la cual se puede hacer uso de los vouchers en el comercio
-                      eco:
+                        description: Mensaje que debe aceptar el cliente antes de realizar la compra.
+                        format: html
+                      provider:
                         type: object
                         description: Información respecto al proveedor de la experiencia
                         properties:
                           fancy_name:
                             type: string
                             description: Nombre comercial del proveedor
-                      experience:
+                      name:
+                        type: string
+                        description:  Nombre del producto
+                      sku:
+                        type: string
+                        description: SKU del producto
+                      images:
+                        type: array
+                        description: Listado de urls de imagenes adicionales e imagen principal del producto
+                      description:
                         type: object
-                        description: Información respecto a la experiencia
+                        description: Información respecto al producto
                         properties:
-                          name:
+                          details:
                             type: string
-                            description: Nombre de la experiencia o giftcard
-                          image_url:
+                            description: Detalles o descripción de la experiencia
+                            format: html
+                          addresses:
                             type: string
-                            description: Url de imagen principal
-                            format: uri
+                            description: Direcciones de donde se puede hacer uso el voucher
+                            format: html
+                          instructions:
+                            type: string
+                            description: Instrucciones de uso del voucher
+                            format: html
+                          conditions:
+                            type: string
+                            description: Condiciones de la experiencia
+                            format: html
+                      exchanges:
+                        $ref: '#/components/schemas/events_exchanges'
+                      validation_availability:
+                        type: object
+                        description: Fechas en las cuales se puede hacer uso de los vouchers en el comercio
+                        properties:
+                          validity_starting_at:
+                            type: string
+                            description: Fecha desde la cual se puede hacer uso de los vouchers en el comercio
+                          validity_ending_at:
+                            type: string
+                            description: Fecha hasta la cual se puede hacer uso de los vouchers en el comercio
+                      purchase_availability:
+                        type: object
+                        description: Fechas en las cuales está disponible para registrar compras
+                        properties:
+                          starting_at:
+                            type: string
+                            description: Fecha desde la cual está disponible para registrar compras
+                          ending_at:
+                            type: string
+                            description: Fecha hasta la cual está disponible para registrar compras
+                      price:
+                        type: number
+                        description: Costo del voucher
+                      stock:
+                        type: object
+                        description: Información respecto al stock del producto
+                        properties:
+                          available_stock:
+                            type: number
+                            description: Cantidad de stock remanente (stock inicial - compras)
+                          swaps:
+                            type: number
+                            description: Initial stock
+                          purchases_count:
+                            type: number
+                            description: Cantidad de compras o canjes asociados
         vouchers:
           type: array
           description: Listado de vouchers
@@ -426,6 +717,9 @@ components:
               price:
                 type: number
                 description: Costo del voucher
+              exchange_id_0:
+                type: string
+                description: Id de Opción de compra escogida
 
     cart_checkout_request:
       type: object
@@ -460,21 +754,25 @@ components:
       items:
         type: object
         properties:
-          id_0:
+          id:
             type: string
-            description: Id del event
+            description: Id del producto
           sku:
             type: string
-            description: Sku del evento
-          swaps:
-            type: number
-            description: Initial stock
-          purchases_count:
-            type: number
-            description: Cantidad de compras o canjes asociados
-          available_stock:
-            type: number
-            description: Cantidad de stock remanente (stock inicial - compras)
+            description: Sku del producto
+          stock:
+            type: object
+            description: Información respecto al stock del producto
+            properties:
+              available_stock:
+                type: number
+                description: Cantidad de stock remanente (stock inicial - compras)
+              swaps:
+                type: number
+                description: Initial stock
+              purchases_count:
+                type: number
+                description: Cantidad de compras o canjes asociados
 
     actived_exchanges_response:
       type: array
@@ -483,10 +781,10 @@ components:
         properties:
           id_0:
             type: string
-            description: Id del event
+            description: Id del producto
           sku:
             type: string
-            description: Sku del evento
+            description: Sku del producto
           exchanges:
             $ref: '#/components/schemas/events_exchanges'
 
@@ -497,80 +795,91 @@ components:
         properties:
           id_0:
             type: string
-            description: Id del evento
+            description: Id del producto
           state:
             type: string
-            description: Estado del evento
+            description: Estado del producto
             enum:
               - published
               - taken
-          swaps:
-            type: number
-            description: Initial stock
-          purchases_count:
-            type: number
-            description: Cantidad de compras o canjes asociados
-          available_stock:
-            type: number
-            description: Cantidad de stock remanente (stock inicial - compras)
-          sku:
-            type: string
-            description: SKU del evento
-          starting_at:
-            type: string
-            description: Fecha desde la cual está disponible para registrar compras
-          ending_at:
-            type: string
-            description: Fecha hasta la cual está disponible para registrar compras
-          validity_starting_at:
-            type: string
-            description: Fecha desde la cual se puede hacer uso de los vouchers en el comercio
-          validity_ending_at:
-            type: string
-            description: Fecha hasta la cual se puede hacer uso de los vouchers en el comercio
           client_confirm_message:
             type: string
             description: Mensaje que debe aceptar el cliente antes de realizar la compra.
             format: html
-          eco:
+          provider:
             type: object
             description: Información respecto al proveedor de la experiencia
             properties:
               fancy_name:
                 type: string
                 description: Nombre comercial del proveedor
-          experience:
+          name:
+            type: string
+            description:  Nombre del producto
+          sku:
+            type: string
+            description: SKU del producto
+          images:
+            type: array
+            description: Listado de urls de imagenes adicionales e imagen principal del producto
+          description:
             type: object
-            description: Información respecto a la experiencia
+            description: Información respecto al producto
             properties:
-              name:
-                type: string
-                description: Nombre de la experiencia o giftcard
-              image_url:
-                type: string
-                description: Url de imagen principal
-                format: uri
-              experience_images:
-                type: array
-                description: Listado de urls de imagenes adicionales
               details:
                 type: string
                 description: Detalles o descripción de la experiencia
-                format: html
-              conditions:
-                type: string
-                description: Condiciones de la experiencia
                 format: html
               addresses:
                 type: string
                 description: Direcciones de donde se puede hacer uso el voucher
                 format: html
-              exchange_mechanism:
+              instructions:
                 type: string
                 description: Instrucciones de uso del voucher
                 format: html
+              conditions:
+                type: string
+                description: Condiciones de la experiencia
+                format: html
           exchanges:
             $ref: '#/components/schemas/events_exchanges'
+          validation_availability:
+            type: object
+            description: Fechas en las cuales se puede hacer uso de los vouchers en el comercio
+            properties:
+              validity_starting_at:
+                type: string
+                description: Fecha desde la cual se puede hacer uso de los vouchers en el comercio
+              validity_ending_at:
+                type: string
+                description: Fecha hasta la cual se puede hacer uso de los vouchers en el comercio
+          purchase_availability:
+            type: object
+            description: Fechas en las cuales está disponible para registrar compras
+            properties:
+              starting_at:
+                type: string
+                description: Fecha desde la cual está disponible para registrar compras
+              ending_at:
+                type: string
+                description: Fecha hasta la cual está disponible para registrar compras
+          price:
+            type: number
+            description: Costo del voucher
+          stock:
+            type: object
+            description: Información respecto al stock del producto
+            properties:
+              available_stock:
+                type: number
+                description: Cantidad de stock remanente (stock inicial - compras)
+              swaps:
+                type: number
+                description: Initial stock
+              purchases_count:
+                type: number
+                description: Cantidad de compras o canjes asociados
   securitySchemes:
     JWT:
       type: http
