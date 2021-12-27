@@ -26,7 +26,7 @@ paths:
       tags:
         - products
       summary: Listado de productos activos
-      description: Listado de experiencias elegidas para el catálogo <br /> <br /> <img src="states.png" /> <br /> <br />
+      description: Listado de experiencias elegidas para el catálogo
       operationId: getActiveEvents
       deprecated: false
       security:
@@ -979,4 +979,4 @@ components:
         Para más información, véase https://jwt.io/
 tags:
   - name: vouchers_cart
-    description: Creación de vouchers utilizando un carro de compras.
+    description: Creación de vouchers utilizando un carro de compras. <br /> <br /> <img src="states.png" /> <br /> <br />
