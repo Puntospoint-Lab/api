@@ -24,9 +24,9 @@ paths:
   /element/clients/events/available:
     get:
       tags:
-        - events
+        - products
       summary: Listado de productos activos
-      description: Listado de experiencias elegidas para el catálogo
+      description: Listado de experiencias elegidas para el catálogo <br /> <br /> <img src="states.png" /> <br /> <br />
       operationId: getActiveEvents
       deprecated: false
       security:
@@ -70,7 +70,7 @@ paths:
   /element/clients/events/available/exchanges:
     get:
       tags:
-        - events
+        - products
       summary: Opciones de compras activas
       description: Listado de todas las opciones de compra disponibles para los productos activos
       operationId: getActiveExchangesEvents
@@ -107,7 +107,7 @@ paths:
   /element/clients/events/available/stocks:
     get:
       tags:
-        - events
+        - products
       summary: Stocks de productos activos
       description: Listado de todas las opciones de compra disponibles para los productos activos
       operationId: getActiveStocksEvents
