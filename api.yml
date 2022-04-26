@@ -10,7 +10,7 @@ info:
     name: Apache-2.0
     url: 'https://opensource.org/licenses/Apache-2.0'
   x-logo:
-    url: "https://canjeonline-cmrpuntos.puntospoint.com/static/media/logopuntospoint.e1d7d96a.svg"
+    url: poweredbypuntospoint.png
     backgroundColor: "transparent"
     altText: "Puntospoint"
   description: |
