@@ -10,7 +10,7 @@ info:
     name: Apache-2.0
     url: 'https://opensource.org/licenses/Apache-2.0'
   x-logo:
-    url: poweredbypuntospoint.png
+    url: puntospoint_logo.svg
     backgroundColor: "transparent"
     altText: "Puntospoint"
   description: |
