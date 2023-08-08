@@ -626,7 +626,7 @@ paths:
               <commerce_purchase>
                 <commerce>Mi Tienda</commerce>
                 <purchase_id>12345-ABC</purchase_id>
-                <purchase_mode>P</purchase_mode>
+                <purchase_mode>1</purchase_mode>
                 <client_document_type>RUT</client_document_type>
                 <client_document_number>12345678</client_document_number>
                 <purchase_datetime>2023-08-07T12:34:56Z</purchase_datetime>
@@ -920,8 +920,8 @@ components:
           type: string
           description: ID externa de la compra
         purchase_mode:
-          type: string
-          description: P = Presencial / O = Online
+          type: integer
+          description: 1 = Presencial / 2 = Online
         client_document_type:
           type: string
           description: 'Tipo de documento del cliente'
@@ -1124,7 +1124,7 @@ components:
         purchase_id:
           type: string
         purchase_mode:
-          type: string
+          type: integer
         client_document_type:
           type: string
         client_document_number:
