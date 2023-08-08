@@ -140,6 +140,8 @@ paths:
 
   /element/login:
     post:
+      tags:
+        - authentication
       summary: Login
       description: Endpoint para obtener token para la autorización de requests (JWT).
       operationId: login
@@ -586,6 +588,77 @@ paths:
       requestBody:
         required: false
     summary: ''
+
+  /element/clients/data_driven/commerce_purchases:
+    post:
+      tags:
+        - commerce_purchases
+      summary: Crear registro de compra de un comercio
+      description: Registra una compra presencial/online en un comercio, con sus items.
+      operationId: commercePurchaseCreate
+      responses:
+        201:
+          description: Registro de compra creada con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/commerce_purchase_response'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/commerce_purchase_response'
+              example: |
+
+      deprecated: false
+      security:
+        - JWT: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/commerce_purchase_request'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/commerce_purchase_request'
+            example: |
+              |
+              <?xml version="1.0" encoding="UTF-8"?>
+              <commerce_purchase>
+                <commerce>Mi Tienda</commerce>
+                <purchase_id>12345-ABC</purchase_id>
+                <purchase_mode>P</purchase_mode>
+                <client_document_type>RUT</client_document_type>
+                <client_document_number>12345678</client_document_number>
+                <purchase_datetime>2023-08-07T12:34:56Z</purchase_datetime>
+                <subtotal_purchase_price>100.00</subtotal_purchase_price>
+                <total_purchase_price>120.00</total_purchase_price>
+                <coupon_code>SALE2023</coupon_code>
+                <coupon_amount>20.00</coupon_amount>
+                <store_name>Tienda Online</store_name>
+                <receipt_number>ABC123XYZ</receipt_number>
+                <vendor_document_type>RUT</vendor_document_type>
+                <vendor_document_number>987654321</vendor_document_number>
+                <vendor_name>Proveedor XYZ</vendor_name>
+                <commerce_purchase_items_attributes>
+                  <commerce_purchase_item>
+                    <product_name>Producto 1</product_name>
+                    <category_name>Electrónica</category_name>
+                    <unit_price>50.00</unit_price>
+                    <unit_price_with_discount>45.00</unit_price_with_discount>
+                    <units>2</units>
+                    <total_product_price>100.00</total_product_price>
+                  </commerce_purchase_item>
+                  <commerce_purchase_item>
+                    <product_name>Producto 2</product_name>
+                    <category_name>Ropa</category_name>
+                    <unit_price>25.00</unit_price>
+                    <unit_price_with_discount>20.00</unit_price_with_discount>
+                    <units>3</units>
+                    <total_product_price>75.00</total_product_price>
+                  </commerce_purchase_item>
+                </commerce_purchase_items_attributes>
+              </commerce_purchase>
+  summary: ''
 components:
   links: {}
   callbacks: {}
@@ -838,6 +911,79 @@ components:
                 type: string
                 description: Cantidad de vouchers del item
 
+    commerce_purchase_request:
+      type: object
+      properties:
+        commerce:
+          type: string
+        purchase_id:
+          type: string
+          description: ID externa de la compra
+        purchase_mode:
+          type: string
+          description: P = Presencial / O = Online
+        client_document_type:
+          type: string
+          description: 'Tipo de documento del cliente'
+        client_document_number:
+          type: string
+          description: 'Número de documento del cliente'
+        purchase_datetime:
+          type: string
+          format: date-time
+          description: Fecha y hora de la compra
+        subtotal_purchase_price:
+          type: number
+          description: Valor total de productos adquiridos en una misma compra, incluyendo descuentos.
+        total_purchase_price:
+          type: number
+          description: Valor total de productos adquiridos en una misma compra, incluyendo descuentos y cupones.
+        coupon_code:
+          type: string
+          description: Código del cupón
+        coupon_amount:
+          type: number
+          description: Monto del cupón
+        store_name:
+          type: string
+          description: Nombre del local de venta
+        receipt_number:
+          type: string
+          description: Número de boleta
+        vendor_document_type:
+          type: string
+          description: 'Tipo de documento del vendedor'
+        vendor_document_number:
+          type: string
+          description: 'Número de documento del vendedor'
+        vendor_name:
+          type: string
+        commerce_purchase_items_attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/commerce_purchase_item_request'
+    commerce_purchase_item_request:
+      type: object
+      properties:
+        product_name:
+          type: string
+          description: 'Nombre del producto'
+        category_name:
+          type: string
+          description: 'Nombre de categoría'
+        unit_price:
+          type: number
+          description: 'Precio venta público del libro adquirido.'
+        unit_price_with_discount:
+          type: number
+          description: 'Precio venta público con descuento del producto adquirido.'
+        units:
+          type: number
+          description: 'Cantidad de unidades adquiridas del producto.'
+        total_product_price:
+          type: number
+          description: Valor total de unidades adquiridas de un mismo producto, incluyendo descuentos.
+
     actived_stocks_response:
       type: array
       items:
@@ -969,6 +1115,61 @@ components:
               purchases_count:
                 type: number
                 description: Cantidad de compras o canjes asociados
+
+    commerce_purchase_response:
+      type: object
+      properties:
+        commerce:
+          type: string
+        purchase_id:
+          type: string
+        purchase_mode:
+          type: string
+        client_document_type:
+          type: string
+        client_document_number:
+          type: string
+        purchase_datetime:
+          type: string
+          format: date-time
+        subtotal_purchase_price:
+          type: number
+        total_purchase_price:
+          type: number
+        coupon_code:
+          type: string
+        coupon_amount:
+          type: number
+        store_name:
+          type: string
+        receipt_number:
+          type: string
+        vendor_document_type:
+          type: string
+        vendor_document_number:
+          type: string
+        vendor_name:
+          type: string
+        commerce_purchase_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/commerce_purchase_item'
+
+    commerce_purchase_item:
+      type: object
+      properties:
+        category_name:
+          type: string
+        product_name:
+          type: string
+        total_product_price:
+          type: number
+        unit_price:
+          type: number
+        unit_price_with_discount:
+          type: number
+        units:
+          type: number
   securitySchemes:
     JWT:
       type: http
@@ -978,5 +1179,20 @@ components:
         Para ser autorizado para acceder a los endpoints de Puntospoint lo debes hacer enviando el token (Bearer) obtenido en el **login**.
         Para más información, véase https://jwt.io/
 tags:
+  - name: authentication
   - name: vouchers_cart
     description: Creación de vouchers utilizando un carro de compras. <br /> <br /> <img src="states.png" /> <br /> <br />
+  - name: products
+  - name: commerce_purchases
+
+x-tagGroups:
+  - name: Authentication
+    tags:
+      - authentication
+  - name: Loyalty Club
+    tags:
+      - products
+      - vouchers_cart
+  - name: Data Driven
+    tags:
+      - commerce_purchases
