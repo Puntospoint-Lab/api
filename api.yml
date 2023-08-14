@@ -888,54 +888,69 @@ components:
       properties:
         purchase_id:
           type: string
-          description: ID externa de la compra
+          description: Id de transacción en sistemas del comercio
+          example: '12345-ABC'
         purchase_mode:
           type: string
-          description: 1 = Presencial / 2 = Online
+          description: Tipo de transacción. Presencial = 1, Online = 2
           example: "1"
         client_document_type:
           type: string
-          description: 'Tipo de documento del cliente'
+          description: 'Tipo de documento del cliente. Para comercios en chile por defecto el valor es RUT. Opciones disponibles para Colombia: CC, CE. Opciones para Perú: DNI, CE.'
+          example: 'RUT'
         client_document_number:
           type: string
           description: 'Número de documento del cliente'
+          example: "145221331"
         purchase_datetime:
           type: string
           format: iso8601
-          description: Fecha y hora de la compra
+          description: Fecha y hora de la transacción en el comercio
+          example: "2023-08-10T17:15:00Z"
         subtotal_purchase_price:
           type: number
           description: Valor total de productos adquiridos en una misma compra, incluyendo descuentos.
+          example: 100.00
         total_purchase_price:
           type: number
           description: Valor total de productos adquiridos en una misma compra, incluyendo descuentos y cupones.
+          example: 80.00
         coupon_code:
           type: string
-          description: Código del cupón
+          description: Si incluye cupón de beneficio, indicar el código del cupón.
+          example: "SALE2023"
         coupon_amount:
           type: number
-          description: Monto del cupón
+          description: Si incluye cupón de beneficio, indicar el monto del cupón.
+          example: 20.00
         store_id:
           type: string
-          description: ID del local de venta
+          description: Id de tienda del comercio donde se realiza la transacción
+          example: '1'
         store_name:
           type: string
-          description: Nombre del local de venta
+          description: Nombre de la tienda en la que se realiza la transacción
+          example: 'Nombre Tienda'
         purchase_document_type:
           type: string
-          description: Tipo de documento tributario
+          description: 'Tipo de documento con el que se realiza la transacción. Opciones: Boleta, Factura, entre otras.'
+          example: 'Boleta'
         purchase_document_number:
           type: string
-          description: Número de documento tributario
+          description: 'Número del documento con el que se realiza la transacción. Ejemplo: Nº de Boleta.'
+          example: "ABC123XYZ"
         cashier_document_type:
           type: string
-          description: 'Tipo de documento del vendedor'
+          description: 'Tipo de documento del vendedor. Para comercios en chile por defecto el valor es RUT. Opciones disponibles para Colombia: CC, CE. Opciones para Perú: DNI, CE.'
+          example: 'RUT'
         cashier_document_number:
           type: string
-          description: 'Número de documento del vendedor'
+          description: 'Número del documento del vendedor. Para Chile se espera el número de rut.'
+          example: "144478347"
         cashier_name:
           type: string
           description: 'Nombre del vendedor'
+          example: 'Juan Pérez'
         items:
           type: array
           items:
@@ -945,25 +960,32 @@ components:
       properties:
         product_name:
           type: string
-          description: 'Nombre del producto'
+          description: Nombre del producto comprado por el cliente
+          example: 'Producto 1'
         product_sku:
           type: string
           description: 'SKU del producto'
+          example: 'SKU123'
         category_name:
           type: string
-          description: 'Nombre de categoría'
+          description: Categoría del producto
+          example: "Electrónica"
         unit_price:
           type: number
-          description: 'Precio venta público del libro adquirido.'
+          description: 'Precio venta público del producto adquirido.'
+          example: 50
         unit_discounted_price:
           type: number
           description: 'Precio venta público con descuento del producto adquirido.'
+          example: 50
         units:
           type: number
           description: 'Cantidad de unidades adquiridas del producto.'
+          example: 2
         total_product_price:
           type: number
           description: Valor total de unidades adquiridas de un mismo producto, incluyendo descuentos.
+          example: 100
 
     actived_stocks_response:
       type: array
