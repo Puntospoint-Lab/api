@@ -606,7 +606,20 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/commerce_purchase_response'
-              example: |
+        422:
+          description: Registro de compra no pudo ser procesado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "unprocessable_entity"
+                  errors:
+                    type: array
+                    description: Listado de errores
+                    example: []
 
       deprecated: false
       security:
@@ -617,48 +630,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/commerce_purchase_request'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/commerce_purchase_request'
-            example: |
-              |
-              <?xml version="1.0" encoding="UTF-8"?>
-              <commerce_purchase>
-                <commerce>Mi Tienda</commerce>
-                <purchase_id>12345-ABC</purchase_id>
-                <purchase_mode>1</purchase_mode>
-                <client_document_type>RUT</client_document_type>
-                <client_document_number>12345678</client_document_number>
-                <purchase_datetime>2023-08-07 12:34:56</purchase_datetime>
-                <subtotal_purchase_price>100.00</subtotal_purchase_price>
-                <total_purchase_price>120.00</total_purchase_price>
-                <coupon_code>SALE2023</coupon_code>
-                <coupon_amount>20.00</coupon_amount>
-                <store_name>Tienda Online</store_name>
-                <receipt_number>ABC123XYZ</receipt_number>
-                <cashier_document_type>RUT</cashier_document_type>
-                <cashier_document_number>987654321</cashier_document_number>
-                <cashier_name>Proveedor XYZ</cashier_name>
-                <commerce_purchase_items_attributes>
-                  <commerce_purchase_item>
-                    <product_name>Producto 1</product_name>
-                    <category_name>Electrónica</category_name>
-                    <unit_price>50.00</unit_price>
-                    <unit_discounted_price>45.00</unit_discounted_price>
-                    <units>2</units>
-                    <total_product_price>100.00</total_product_price>
-                  </commerce_purchase_item>
-                  <commerce_purchase_item>
-                    <product_name>Producto 2</product_name>
-                    <product_sku>SKU123</product_sku>
-                    <category_name>Ropa</category_name>
-                    <unit_price>25.00</unit_price>
-                    <unit_discounted_price>20.00</unit_discounted_price>
-                    <units>3</units>
-                    <total_product_price>75.00</total_product_price>
-                  </commerce_purchase_item>
-                </commerce_purchase_items_attributes>
-              </commerce_purchase>
   summary: ''
 components:
   links: {}
@@ -915,14 +886,13 @@ components:
     commerce_purchase_request:
       type: object
       properties:
-        commerce:
-          type: string
         purchase_id:
           type: string
           description: ID externa de la compra
         purchase_mode:
-          type: integer
+          type: string
           description: 1 = Presencial / 2 = Online
+          example: "1"
         client_document_type:
           type: string
           description: 'Tipo de documento del cliente'
@@ -931,7 +901,7 @@ components:
           description: 'Número de documento del cliente'
         purchase_datetime:
           type: string
-          format: date-time
+          format: iso8601
           description: Fecha y hora de la compra
         subtotal_purchase_price:
           type: number
@@ -966,7 +936,7 @@ components:
         cashier_name:
           type: string
           description: 'Nombre del vendedor'
-        commerce_purchase_items_attributes:
+        items:
           type: array
           items:
             $ref: '#/components/schemas/commerce_purchase_item_request'
@@ -1127,69 +1097,13 @@ components:
                 type: number
                 description: Cantidad de compras o canjes asociados
 
+
     commerce_purchase_response:
       type: object
       properties:
-        cashier_document_number:
+        status:
           type: string
-          example: "987654321"
-        cashier_document_type:
-          type: string
-          example: "RUT"
-        cashier_name:
-          type: string
-          example: "Vendedor XYZ"
-        client_document_number:
-          type: string
-          example: "12345678"
-        client_document_type:
-          type: string
-          example: "RUT"
-        commerce:
-          type: string
-          example: "Nombre del comercio"
-        coupon_amount:
-          type: number
-          format: float
-          example: 20.00
-        coupon_code:
-          type: string
-          example: "SALE2023"
-        purchase_datetime:
-          type: string
-          format: date-time
-          example: "2023-08-14T10:00:00Z"
-        purchase_id:
-          type: string
-          example: "12345-ABC"
-        purchase_document_number:
-          type: string
-          example: "ABC123XYZ"
-        purchase_document_type:
-          type: string
-          example: "Boleta"
-        store_id:
-          type: string
-          example: "1"
-        store_name:
-          type: string
-          example: "Nombre Tienda"
-        subtotal_purchase_price:
-          type: number
-          format: float
-          example: 100.00
-        total_purchase_price:
-          type: number
-          format: float
-          example: 120.00
-        purchase_mode_description:
-          type: string
-          example: "presencial"
-        commerce_purchase_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/commerce_purchase_item'
-
+          example: "created"
     commerce_purchase_item:
       type: object
       properties:
