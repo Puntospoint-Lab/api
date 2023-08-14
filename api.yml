@@ -151,6 +151,7 @@ paths:
           schema:
             type: string
             format: base64
+          description: Basic Auth. Codificación en base64 de la siguiente concatenación {username}:{password}
           required: true
       responses:
         200:
