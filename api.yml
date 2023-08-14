@@ -589,7 +589,7 @@ paths:
         required: false
     summary: ''
 
-  /element/clients/data_driven/commerce_purchases:
+  /element/data_driven/commerce_purchases:
     post:
       tags:
         - commerce_purchases
@@ -606,7 +606,20 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/commerce_purchase_response'
-              example: |
+        422:
+          description: Registro de compra no pudo ser procesado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "unprocessable_entity"
+                  errors:
+                    type: array
+                    description: Listado de errores
+                    example: []
 
       deprecated: false
       security:
@@ -617,47 +630,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/commerce_purchase_request'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/commerce_purchase_request'
-            example: |
-              |
-              <?xml version="1.0" encoding="UTF-8"?>
-              <commerce_purchase>
-                <commerce>Mi Tienda</commerce>
-                <purchase_id>12345-ABC</purchase_id>
-                <purchase_mode>1</purchase_mode>
-                <client_document_type>RUT</client_document_type>
-                <client_document_number>12345678</client_document_number>
-                <purchase_datetime>2023-08-07T12:34:56Z</purchase_datetime>
-                <subtotal_purchase_price>100.00</subtotal_purchase_price>
-                <total_purchase_price>120.00</total_purchase_price>
-                <coupon_code>SALE2023</coupon_code>
-                <coupon_amount>20.00</coupon_amount>
-                <store_name>Tienda Online</store_name>
-                <receipt_number>ABC123XYZ</receipt_number>
-                <vendor_document_type>RUT</vendor_document_type>
-                <vendor_document_number>987654321</vendor_document_number>
-                <vendor_name>Proveedor XYZ</vendor_name>
-                <commerce_purchase_items_attributes>
-                  <commerce_purchase_item>
-                    <product_name>Producto 1</product_name>
-                    <category_name>Electrónica</category_name>
-                    <unit_price>50.00</unit_price>
-                    <unit_price_with_discount>45.00</unit_price_with_discount>
-                    <units>2</units>
-                    <total_product_price>100.00</total_product_price>
-                  </commerce_purchase_item>
-                  <commerce_purchase_item>
-                    <product_name>Producto 2</product_name>
-                    <category_name>Ropa</category_name>
-                    <unit_price>25.00</unit_price>
-                    <unit_price_with_discount>20.00</unit_price_with_discount>
-                    <units>3</units>
-                    <total_product_price>75.00</total_product_price>
-                  </commerce_purchase_item>
-                </commerce_purchase_items_attributes>
-              </commerce_purchase>
   summary: ''
 components:
   links: {}
@@ -914,51 +886,72 @@ components:
     commerce_purchase_request:
       type: object
       properties:
-        commerce:
-          type: string
         purchase_id:
           type: string
-          description: ID externa de la compra
+          description: Id de transacción en sistemas del comercio
+          example: '12345-ABC'
         purchase_mode:
-          type: integer
-          description: 1 = Presencial / 2 = Online
+          type: string
+          description: Tipo de transacción. Presencial = 1, Online = 2
+          example: "1"
         client_document_type:
           type: string
-          description: 'Tipo de documento del cliente'
+          description: 'Tipo de documento del cliente. Para comercios en chile por defecto el valor es RUT. Opciones disponibles para Colombia: CC, CE. Opciones para Perú: DNI, CE.'
+          example: 'RUT'
         client_document_number:
           type: string
           description: 'Número de documento del cliente'
+          example: "145221331"
         purchase_datetime:
           type: string
-          format: date-time
-          description: Fecha y hora de la compra
+          format: iso8601
+          description: Fecha y hora de la transacción en el comercio
+          example: "2023-08-10T17:15:00Z"
         subtotal_purchase_price:
           type: number
           description: Valor total de productos adquiridos en una misma compra, incluyendo descuentos.
+          example: 100.00
         total_purchase_price:
           type: number
           description: Valor total de productos adquiridos en una misma compra, incluyendo descuentos y cupones.
+          example: 80.00
         coupon_code:
           type: string
-          description: Código del cupón
+          description: Si incluye cupón de beneficio, indicar el código del cupón.
+          example: "SALE2023"
         coupon_amount:
           type: number
-          description: Monto del cupón
+          description: Si incluye cupón de beneficio, indicar el monto del cupón.
+          example: 20.00
+        store_id:
+          type: string
+          description: Id de tienda del comercio donde se realiza la transacción
+          example: '1'
         store_name:
           type: string
-          description: Nombre del local de venta
-        receipt_number:
+          description: Nombre de la tienda en la que se realiza la transacción
+          example: 'Nombre Tienda'
+        purchase_document_type:
           type: string
-          description: Número de boleta
-        vendor_document_type:
+          description: 'Tipo de documento con el que se realiza la transacción. Opciones: Boleta, Factura, entre otras.'
+          example: 'Boleta'
+        purchase_document_number:
           type: string
-          description: 'Tipo de documento del vendedor'
-        vendor_document_number:
+          description: 'Número del documento con el que se realiza la transacción. Ejemplo: Nº de Boleta.'
+          example: "ABC123XYZ"
+        cashier_document_type:
           type: string
-          description: 'Número de documento del vendedor'
-        vendor_name:
+          description: 'Tipo de documento del vendedor. Para comercios en chile por defecto el valor es RUT. Opciones disponibles para Colombia: CC, CE. Opciones para Perú: DNI, CE.'
+          example: 'RUT'
+        cashier_document_number:
           type: string
-        commerce_purchase_items_attributes:
+          description: 'Número del documento del vendedor. Para Chile se espera el número de rut.'
+          example: "144478347"
+        cashier_name:
+          type: string
+          description: 'Nombre del vendedor'
+          example: 'Juan Pérez'
+        items:
           type: array
           items:
             $ref: '#/components/schemas/commerce_purchase_item_request'
@@ -967,22 +960,32 @@ components:
       properties:
         product_name:
           type: string
-          description: 'Nombre del producto'
+          description: Nombre del producto comprado por el cliente
+          example: 'Producto 1'
+        product_sku:
+          type: string
+          description: 'SKU del producto'
+          example: 'SKU123'
         category_name:
           type: string
-          description: 'Nombre de categoría'
+          description: Categoría del producto
+          example: "Electrónica"
         unit_price:
           type: number
-          description: 'Precio venta público del libro adquirido.'
-        unit_price_with_discount:
+          description: 'Precio venta público del producto adquirido.'
+          example: 50
+        unit_discounted_price:
           type: number
           description: 'Precio venta público con descuento del producto adquirido.'
+          example: 50
         units:
           type: number
           description: 'Cantidad de unidades adquiridas del producto.'
+          example: 2
         total_product_price:
           type: number
           description: Valor total de unidades adquiridas de un mismo producto, incluyendo descuentos.
+          example: 100
 
     actived_stocks_response:
       type: array
@@ -1116,45 +1119,13 @@ components:
                 type: number
                 description: Cantidad de compras o canjes asociados
 
+
     commerce_purchase_response:
       type: object
       properties:
-        commerce:
+        status:
           type: string
-        purchase_id:
-          type: string
-        purchase_mode:
-          type: integer
-        client_document_type:
-          type: string
-        client_document_number:
-          type: string
-        purchase_datetime:
-          type: string
-          format: date-time
-        subtotal_purchase_price:
-          type: number
-        total_purchase_price:
-          type: number
-        coupon_code:
-          type: string
-        coupon_amount:
-          type: number
-        store_name:
-          type: string
-        receipt_number:
-          type: string
-        vendor_document_type:
-          type: string
-        vendor_document_number:
-          type: string
-        vendor_name:
-          type: string
-        commerce_purchase_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/commerce_purchase_item'
-
+          example: "created"
     commerce_purchase_item:
       type: object
       properties:
@@ -1166,7 +1137,7 @@ components:
           type: number
         unit_price:
           type: number
-        unit_price_with_discount:
+        unit_discounted_price:
           type: number
         units:
           type: number
