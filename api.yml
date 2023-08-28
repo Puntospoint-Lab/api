@@ -619,8 +619,21 @@ paths:
                     example: "unprocessable_entity"
                   errors:
                     type: array
-                    description: Listado de errores
-                    example: []
+                    description: Listado de errores por atributo
+                    example:
+                    - "purchase_id": "es demasiado largo (30 caracteres máximo)"
+                    - "purchase_mode": "no está incluido en la lista"
+                    - "store_id": "es demasiado largo (30 caracteres máximo)"
+                    - "client_document_type": "es demasiado largo (30 caracteres máximo)"
+                    - "purchase_document_type": "es demasiado largo (30 caracteres máximo)"
+                    - "cashier_document_type": "es demasiado largo (30 caracteres máximo)"
+                    - "purchase_mode": "debe tener una longitud máxima de 1 caracter"
+                    - "client_document_number": "es demasiado largo (18 caracteres máximo)"
+                    - "cashier_document_number": "es demasiado largo (18 caracteres máximo)"
+                    - "store_name": "es demasiado largo (255 caracteres máximo)"
+                    - "purchase_document_number": "es demasiado largo (255 caracteres máximo)"
+                    - "coupon_code": "es demasiado largo (255 caracteres máximo)"
+                    - "cashier_name": "es demasiado largo (100 caracteres máximo)"
 
       deprecated: false
       security:
