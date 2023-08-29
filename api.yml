@@ -974,40 +974,38 @@ components:
           example: 'Juan Pérez'
         items:
           type: array
+          description: items
           items:
-            $ref: '#/components/schemas/commerce_purchase_item_request'
-    commerce_purchase_item_request:
-      type: object
-      properties:
-        product_name:
-          type: string
-          description: Nombre del producto comprado por el cliente
-          example: 'Producto 1'
-        product_sku:
-          type: string
-          description: 'SKU del producto'
-          example: 'SKU123'
-        category_name:
-          type: string
-          description: Categoría del producto
-          example: "Electrónica"
-        unit_price:
-          type: number
-          description: 'Precio venta público del producto adquirido.'
-          example: 50
-        unit_discounted_price:
-          type: number
-          description: 'Precio venta público con descuento del producto adquirido.'
-          example: 50
-        units:
-          type: number
-          description: 'Cantidad de unidades adquiridas del producto.'
-          example: 2
-        total_product_price:
-          type: number
-          description: Valor total de unidades adquiridas de un mismo producto, incluyendo descuentos.
-          example: 100
-
+            type: object
+            properties:
+              product_name:
+                type: string
+                description: Nombre del producto comprado por el cliente
+                example: 'Producto 1'
+              product_sku:
+                type: string
+                description: 'SKU del producto'
+                example: 'SKU123'
+              category_name:
+                type: string
+                description: Categoría del producto
+                example: "Electrónica"
+              unit_price:
+                type: number
+                description: 'Precio venta público del producto adquirido.'
+                example: 50
+              unit_discounted_price:
+                type: number
+                description: 'Precio venta público con descuento del producto adquirido.'
+                example: 50
+              units:
+                type: number
+                description: 'Cantidad de unidades adquiridas del producto.'
+                example: 2
+              total_product_price:
+                type: number
+                description: Valor total de unidades adquiridas de un mismo producto, incluyendo descuentos.
+                example: 100
     actived_stocks_response:
       type: array
       items:
