@@ -633,9 +633,9 @@ paths:
                         "cashier_document_type": ["es demasiado largo (30 caracteres máximo)"],
                         "cashier_document_number": ["es demasiado largo (18 caracteres máximo)"],
                         "cashier_name": ["es demasiado largo (100 caracteres máximo)"],
-                        "commerce_purchase_items[0].product_name": ["es demasiado largo (100 caracteres máximo)"],
-                        "commerce_purchase_items[0].category_name": ["es demasiado largo (100 caracteres máximo)"],
-                        "commerce_purchase_items[0].product_sku": ["es demasiado largo (255 caracteres máximo)"]
+                        "items[0].product_name": ["es demasiado largo (100 caracteres máximo)"],
+                        "items[0].category_name": ["es demasiado largo (100 caracteres máximo)"],
+                        "items[0].product_sku": ["es demasiado largo (255 caracteres máximo)"]
                       }
 
       deprecated: false
@@ -917,10 +917,12 @@ components:
             - 2
         client_document_type:
           type: string
+          maxLength: 30
           description: 'Tipo de documento del cliente. Para comercios en chile por defecto el valor es RUT. Opciones disponibles para Colombia: CC, CE. Opciones para Perú: DNI, CE.'
           example: 'RUT'
         client_document_number:
           type: string
+          maxLength: 18
           description: 'Número de documento del cliente'
           example: "145221331"
         purchase_datetime:
@@ -938,6 +940,7 @@ components:
           example: 80.00
         coupon_code:
           type: string
+          maxLength: 255
           description: Si incluye cupón de beneficio, indicar el código del cupón.
           example: "SALE2023"
         coupon_amount:
@@ -946,30 +949,37 @@ components:
           example: 20.00
         store_id:
           type: string
+          maxLength: 30
           description: Id de tienda del comercio donde se realiza la transacción
           example: '1'
         store_name:
           type: string
+          maxLength: 255
           description: Nombre de la tienda en la que se realiza la transacción
           example: 'Nombre Tienda'
         purchase_document_type:
           type: string
+          maxLength: 30
           description: 'Tipo de documento con el que se realiza la transacción. Opciones: Boleta, Factura, entre otras.'
           example: 'Boleta'
         purchase_document_number:
           type: string
+          maxLength: 255
           description: 'Número del documento con el que se realiza la transacción. Ejemplo: Nº de Boleta.'
           example: "ABC123XYZ"
         cashier_document_type:
           type: string
+          maxLength: 30
           description: 'Tipo de documento del vendedor. Para comercios en chile por defecto el valor es RUT. Opciones disponibles para Colombia: CC, CE. Opciones para Perú: DNI, CE.'
           example: 'RUT'
         cashier_document_number:
           type: string
+          maxLength: 18
           description: 'Número del documento del vendedor. Para Chile se espera el número de rut.'
           example: "144478347"
         cashier_name:
           type: string
+          maxLength: 100
           description: 'Nombre del vendedor'
           example: 'Juan Pérez'
         items:
