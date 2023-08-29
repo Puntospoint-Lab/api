@@ -984,7 +984,7 @@ components:
           example: 'Juan Pérez'
         items:
           type: array
-          description: items
+          description: Items
           items:
             type: object
             properties:
