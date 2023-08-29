@@ -907,10 +907,14 @@ components:
           type: string
           description: Id de transacción en sistemas del comercio
           example: '12345-ABC'
+          maxLength: 30
         purchase_mode:
           type: string
           description: Tipo de transacción. Presencial = 1, Online = 2
           example: "1"
+          enum:
+            - 1
+            - 2
         client_document_type:
           type: string
           description: 'Tipo de documento del cliente. Para comercios en chile por defecto el valor es RUT. Opciones disponibles para Colombia: CC, CE. Opciones para Perú: DNI, CE.'
