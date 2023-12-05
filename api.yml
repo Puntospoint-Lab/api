@@ -590,6 +590,39 @@ paths:
         required: false
     summary: ''
 
+  /element/loyalty_club/clients/{rut}/accumulation:
+    get:
+      tags:
+        - clients
+      summary: Obtiene información de acumulación del cliente.
+      description: Retorna información de acumulación de la persona con el RUT indicado.
+      operationId: clientsRutAccumulation
+      parameters:
+        - name: RUT
+          in: path
+          description: Número de documento del cliente
+          required: true
+          example: "145221331"
+          schema:
+            type: string
+      responses:
+        200:
+          description: Información de acumulación del RUT
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/client_rut_accumulation'
+        404:
+          description: RUT no encontrado
+        304:
+          description: Not Modified
+          content: {}
+      deprecated: false
+      security:
+        - JWT: []
+      requestBody:
+        required: false
+    summary: ''
   /element/data_driven/commerce_purchases:
     post:
       tags:
@@ -899,6 +932,30 @@ components:
               amount:
                 type: string
                 description: Cantidad de vouchers del item
+    client_rut_accumulation:
+      type: object
+      properties:
+        rut:
+          type: string
+          description: RUT de Cliente
+        points:
+          type: integer
+          description: Puntos acumulados
+          example: 1000
+        challenges:
+          type: array
+          description: Desafíos activos
+          items:
+            type: object
+            properties:
+              challenge:
+                type: string
+                description: Nombre del desafío
+                example: Compras diarias
+              challenge_changes_count:
+                type: number
+                description: Número de progresos realizados hacia un desafío
+                example: 3
 
     commerce_purchase_request:
       type: object
@@ -1182,6 +1239,7 @@ tags:
   - name: authentication
   - name: vouchers_cart
     description: Creación de vouchers utilizando un carro de compras. <br /> <br /> <img src="states.png" /> <br /> <br />
+  - name: clients
   - name: products
   - name: commerce_purchases
 
@@ -1193,6 +1251,7 @@ x-tagGroups:
     tags:
       - products
       - vouchers_cart
+      - clients
   - name: Data Driven
     tags:
       - commerce_purchases
