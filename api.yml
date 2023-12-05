@@ -595,7 +595,7 @@ paths:
       tags:
         - clients
       summary: Obtiene información de acumulación del cliente.
-      description: Retorna información de acumulación de la persona con el RUT indicado.
+      description: Obtiene información de acumulación de puntos y progreso de desafíos del cliente.
       operationId: clientsRutAccumulation
       parameters:
         - name: RUT
