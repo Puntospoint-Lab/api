@@ -948,13 +948,25 @@ components:
           items:
             type: object
             properties:
-              challenge:
+              id:
+                type: integer
+                description: ID del desafío
+                example: 1
+              name:
                 type: string
                 description: Nombre del desafío
                 example: Compras diarias
+              color:
+                type: string
+                description: Color del desafío en hexadecimal
+                example: 0000FF
+              goal:
+                type: integer
+                description: Meta para completar el desafío
+                example: 10
               challenge_changes_count:
-                type: number
-                description: Número de progresos realizados hacia un desafío
+                type: integer
+                description: Número de progresos realizados hacia el desafío
                 example: 3
 
     commerce_purchase_request:
