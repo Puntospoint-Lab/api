@@ -627,7 +627,7 @@ paths:
         404:
           description: Cliente no encontrado
         304:
-          description: Not Modified Using ETag
+          description: Not Modified (Using ETag)
           content: {}
       deprecated: false
       security:
@@ -978,11 +978,6 @@ components:
                 type: string
                 description: Nombre del desafío
                 example: Mantención costo 0
-              color:
-                type: string
-                description: Color del desafío en hexadecimal
-                example: 0000FF
-                format: hex
               goal:
                 type: integer
                 description: Meta para completar el desafío
