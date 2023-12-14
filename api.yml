@@ -590,17 +590,29 @@ paths:
         required: false
     summary: ''
 
-  /element/loyalty_club/clients/{rut}/accumulation:
+  /element/loyalty_club/clients/{client_document_type}/{client_document_number}/gain:
     get:
       tags:
         - clients
       summary: Obtiene información de acumulación del cliente.
       description: Obtiene información de acumulación de puntos y progreso de desafíos del cliente.
-      operationId: clientsRutAccumulation
+      operationId: clientsGain
       parameters:
-        - name: RUT
+        - name: client_document_type
           in: path
-          description: Número de documento del cliente
+          example: RUT
+          schema:
+            type: string
+          description: >
+            Tipo de documento:
+             * `RUT` - Para compras en Chile.
+             * `CC` - Para compras en Colombia.
+             * `CE` - Para compras en Colombia y Perú.
+             * `DNI` - Para compras en Perú.
+          required: true
+        - name: client_document_number
+          in: path
+          description: Número de documento del cliente, sin puntos ni guiones.
           required: true
           example: "145221331"
           schema:
@@ -611,11 +623,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/client_rut_accumulation'
+                $ref: '#/components/schemas/client_gain'
         404:
-          description: RUT no encontrado
+          description: Cliente no encontrado
         304:
-          description: Not Modified
+          description: Not Modified Using ETag
           content: {}
       deprecated: false
       security:
@@ -932,15 +944,20 @@ components:
               amount:
                 type: string
                 description: Cantidad de vouchers del item
-    client_rut_accumulation:
+    client_gain:
       type: object
       properties:
-        rut:
+        client_document_type:
           type: string
-          description: RUT de Cliente
+          description: Tipo de documento de Cliente
+          example: RUT
+        client_document_number:
+          type: string
+          description: Número de documento de Cliente
+          example: '145221331'
         points:
           type: integer
-          description: Puntos acumulados
+          description: Puntos o Cashback acumulados
           example: 1000
         challenges:
           type: array
@@ -952,19 +969,25 @@ components:
                 type: integer
                 description: ID del desafío
                 example: 1
+              type:
+                type: enum
+                enum:
+                  - daily_purchase
+                description: Tipo de desafío
               name:
                 type: string
                 description: Nombre del desafío
-                example: Compras diarias
+                example: Mantención costo 0
               color:
                 type: string
                 description: Color del desafío en hexadecimal
                 example: 0000FF
+                format: hex
               goal:
                 type: integer
                 description: Meta para completar el desafío
                 example: 10
-              challenge_changes_count:
+              progress:
                 type: integer
                 description: Número de progresos realizados hacia el desafío
                 example: 3
