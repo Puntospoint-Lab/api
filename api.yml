@@ -970,7 +970,7 @@ components:
                 description: ID del desafío
                 example: 1
               type:
-                type: enum
+                type: string
                 enum:
                   - daily_purchase
                 description: Tipo de desafío
