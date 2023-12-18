@@ -153,6 +153,16 @@ paths:
             format: base64
           description: Basic Auth. Codificación en base64 de la siguiente concatenación {username}:{password}
           required: true
+        - in: header
+          name: 'Content-Type'
+          schema:
+            type: string
+            enum: [application/json]
+        - in: header
+          name: 'Accept'
+          schema:
+            type: string
+            enum: [application/json]
       responses:
         200:
           content:
@@ -598,6 +608,16 @@ paths:
       description: Obtiene información de acumulación de puntos y progreso de desafíos del cliente.
       operationId: clientsGain
       parameters:
+        - in: header
+          name: 'Content-Type'
+          schema:
+            type: string
+            enum: [application/json]
+        - in: header
+          name: 'Accept'
+          schema:
+            type: string
+            enum: [application/json]
         - name: client_document_type
           in: path
           example: RUT
@@ -624,6 +644,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/client_gain'
+              examples:
+                completed:
+                  summary: Cliente con desafío completado
+                  value:
+                    client_document_type: RUT
+                    client_document_number: '145221331'
+                    points: 1000
+                    challenges:
+                      - id: 1
+                        type: daily_purchase
+                        name: Mantención costo 0
+                        description: Desafío para mantención sin costos
+                        goal: 10
+                        completed_at: "2023-12-10T18:15:00Z"
+                        progress: 10
+                in_progress:
+                  summary: Cliente con desafío en progreso
+                  value:
+                    client_document_type: RUT
+                    client_document_number: '145221331'
+                    points: 750
+                    challenges:
+                      - id: 1
+                        type: daily_purchase
+                        name: Mantención costo 0
+                        description: Desafío para mantención sin costos
+                        goal: 20
+                        completed_at: null
+                        progress: 15
+        406:
+          description: Not Acceptable
         404:
           description: Cliente no encontrado
         304:
@@ -978,10 +1029,19 @@ components:
                 type: string
                 description: Nombre del desafío
                 example: Mantención costo 0
+              description:
+                type: string
+                description: Descripción del desafío
+                example: Desafío para mantención sin costos
               goal:
                 type: integer
                 description: Meta para completar el desafío
                 example: 10
+              completed_at:
+                type: string
+                format: iso8601
+                description: Fecha y hora de cuando se completó el desafío
+                example: "2023-12-10T18:15:00Z"
               progress:
                 type: integer
                 description: Número de progresos realizados hacia el desafío
