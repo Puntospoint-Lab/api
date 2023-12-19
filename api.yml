@@ -624,7 +624,7 @@ paths:
           name: 'Authorization'
           schema:
             type: string
-            example: "Bearer <login token>"
+            example: 'Bearer <login token>'
           required: true
         - in: header
           name: 'If-None-Match'
