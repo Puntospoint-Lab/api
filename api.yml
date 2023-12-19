@@ -621,6 +621,12 @@ paths:
             enum: [application/json]
           required: true
         - in: header
+          name: 'Authorization'
+          schema:
+            type: string
+            enum: [Bearer <login token>]
+          required: true
+        - in: header
           name: 'If-None-Match'
           schema:
             type: string
@@ -629,7 +635,7 @@ paths:
           name: 'If-Modified-Since'
           schema:
             type: string
-            example: 'Sat, 01 Jan 2023 00:00:00 GMT'
+            example: '"Sat, 01 Jan 2023 00:00:00 GMT"'
         - name: client_document_type
           in: path
           example: RUT
