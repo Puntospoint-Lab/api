@@ -613,11 +613,23 @@ paths:
           schema:
             type: string
             enum: [application/json]
+          required: true
         - in: header
           name: 'Accept'
           schema:
             type: string
             enum: [application/json]
+          required: true
+        - in: header
+          name: 'If-None-Match'
+          schema:
+            type: string
+            example: 33bc8d8ee566e48204012ab66364df08
+        - in: header
+          name: 'If-Modified-Since'
+          schema:
+            type: string
+            example: 'Sat, 01 Jan 2023 00:00:00 GMT'
         - name: client_document_type
           in: path
           example: RUT
