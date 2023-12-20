@@ -661,6 +661,17 @@ paths:
       responses:
         200:
           description: Información de acumulación del cliente
+          headers:
+            ETag:
+              description: Etiqueta de entidad
+              schema:
+                type: string
+              example: '33bc8d8ee566e48204012ab66364df08'
+            Last-Modified:
+              description: Última fecha de modificación
+              schema:
+                type: string
+              example: 'Sat, 01 Jan 2023 00:00:00 GMT'
           content:
             application/json:
               schema:
