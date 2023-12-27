@@ -173,9 +173,6 @@ paths:
               schema:
                 type: object
                 properties:
-                  scope:
-                    type: string
-                    description: Ámbito de acceso del token
                   token_type:
                     type: string
                     description: Tipo de token (Bearer)
@@ -186,7 +183,6 @@ paths:
                     type: integer
                     description: Tiempo de expiración del token en segundos
               example:
-                scope: "read"
                 token_type: "Bearer"
                 access_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwcnVlYmEiLCJpYXQiOjE1MTYyMzkwMjJ9.NBd9pvgsp5kBEC26-4vu-kYSyvlaN4YTQDtytwvioII"
                 expires_in: 3600
