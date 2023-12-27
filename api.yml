@@ -187,9 +187,9 @@ paths:
                     description: Tiempo de expiración del token en segundos
               example:
                 scope: "read"
+                token_type: "Bearer"
                 access_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwcnVlYmEiLCJpYXQiOjE1MTYyMzkwMjJ9.NBd9pvgsp5kBEC26-4vu-kYSyvlaN4YTQDtytwvioII"
                 expires_in: 3600
-                token_type: "Bearer"
         401:
           content:
             application/json:
