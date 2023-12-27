@@ -171,12 +171,31 @@ paths:
           content:
             application/json:
               schema:
-                type: string
-                format: jwt
-              examples:
-                success:
-                  summary: JSON Web Token
-                  value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwcnVlYmEiLCJpYXQiOjE1MTYyMzkwMjJ9.NBd9pvgsp5kBEC26-4vu-kYSyvlaN4YTQDtytwvioII
+                type: object
+                properties:
+                  token_type:
+                    type: string
+                    description: Tipo de token (Bearer)
+                  access_token:
+                    type: string
+                    description: Token de acceso para realizar solicitudes posteriores
+                  expires_in:
+                    type: integer
+                    description: Tiempo de expiración del token en segundos
+              example:
+                token_type: "Bearer"
+                access_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwcnVlYmEiLCJpYXQiOjE1MTYyMzkwMjJ9.NBd9pvgsp5kBEC26-4vu-kYSyvlaN4YTQDtytwvioII"
+                expires_in: 3600
+        401:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+              example:
+                status: "Unauthorized"
   /element/clients/vouchers/carts:
     post:
       tags:
@@ -707,11 +726,31 @@ paths:
                         progress: 15
         406:
           description: Not Acceptable
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+              example:
+                status: "Not Acceptable"
         404:
           description: Cliente no encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+              example:
+                status: "Not Found"
         304:
           description: Not Modified (Using ETag)
-          content: {}
+          content:
+            plain:
+              example: ''
       deprecated: false
       security:
         - JWT: []
