@@ -199,7 +199,7 @@ paths:
                   status:
                     type: string
               example:
-                status: "Forbidden"
+                status: "Unauthorized"
   /element/clients/vouchers/carts:
     post:
       tags:
