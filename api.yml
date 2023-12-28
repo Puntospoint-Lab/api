@@ -746,6 +746,17 @@ paths:
                     type: string
               example:
                 status: "Not Found"
+        403:
+          description: Acceso denegado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+              example:
+                status: "Forbidden"
         304:
           description: Not Modified (Using ETag)
           content:
