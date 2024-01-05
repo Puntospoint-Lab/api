@@ -701,7 +701,13 @@ paths:
                   value:
                     client_document_type: RUT
                     client_document_number: '145221331'
-                    points: 1000
+                    points: 1000,
+                    current_date: '2023-01-30'
+                    billing_day: 20
+                    billing_started_at: '2024-01-21'
+                    billing_ended_at: '2024-02-20'
+                    closure_started_at: '2024-01-17'
+                    closure_ended_at: '2024-02-16'
                     challenges:
                       - id: 1
                         type: daily_purchase
@@ -1092,6 +1098,35 @@ components:
           type: integer
           description: Puntos o Cashback acumulados
           example: 1000
+        current_date:
+          type: string
+          format: date
+          description: Fecha actual
+          example: '2023-01-30'
+        billing_day:
+          type: integer
+          description: Día de facturación
+          example: 20
+        billing_started_at:
+          type: string
+          format: date
+          description: Inicio de facturación
+          example: '2024-01-21'
+        billing_ended_at:
+          type: string
+          format: date
+          description: Cierre de facturación
+          example: '2024-02-20'
+        closure_started_at:
+          type: string
+          format: date
+          description: Inicio de acumulación
+          example: '2024-01-17'
+        closure_ended_at:
+          type: string
+          format: date
+          description: Cierre de acumulación
+          example: '2024-02-16'
         challenges:
           type: array
           description: Desafíos activos
