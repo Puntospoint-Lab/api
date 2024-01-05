@@ -722,6 +722,12 @@ paths:
                     client_document_type: RUT
                     client_document_number: '145221331'
                     points: 750
+                    current_date: '2023-01-30'
+                    billing_day: 20
+                    billing_started_at: '2024-01-21'
+                    billing_ended_at: '2024-02-20'
+                    closure_started_at: '2024-01-17'
+                    closure_ended_at: '2024-02-16'
                     challenges:
                       - id: 1
                         type: daily_purchase
