@@ -677,6 +677,14 @@ paths:
           example: "145221331"
           schema:
             type: string
+        - name: closure_month
+          in: query
+          description: Mes y año de acumulacion (YYYY-MM)
+          required: false
+          example: "2023-01"
+          schema:
+            type: date
+            format: 'YYYY-MM'
       responses:
         200:
           description: Información de acumulación del cliente
@@ -708,14 +716,27 @@ paths:
                     billing_ended_at: '2024-02-20'
                     closure_started_at: '2024-01-17'
                     closure_ended_at: '2024-02-16'
+                    total_purchases: 1500
+                    overdue_days: 0
                     challenges:
                       - id: 1
                         type: daily_purchase
                         name: Mantención costo 0
                         description: Desafío para mantención sin costos
-                        goal: 10
-                        completed_at: "2023-12-10T18:15:00Z"
-                        progress: 10
+                        goal: 2
+                        completed_at: "2024-01-31T15:45:00Z"
+                        progress: 2
+                    purchases:
+                      - business_category: "Electrónicos"
+                        commerce: "ElectroStore"
+                        points: 50
+                        purchase_datetime: "2024-01-30T12:30:00Z"
+                        total_purchase_price: 1000
+                      - business_category: "Ropa"
+                        commerce: "FashionMall"
+                        points: 30
+                        purchase_datetime: "2024-01-31T15:45:00Z"
+                        total_purchase_price: 500
                 in_progress:
                   summary: Cliente con desafío en progreso
                   value:
@@ -728,6 +749,8 @@ paths:
                     billing_ended_at: '2024-02-20'
                     closure_started_at: '2024-01-17'
                     closure_ended_at: '2024-02-16'
+                    overdue_days: 0
+                    total_purchases: 1500
                     challenges:
                       - id: 1
                         type: daily_purchase
@@ -735,7 +758,19 @@ paths:
                         description: Desafío para mantención sin costos
                         goal: 20
                         completed_at: null
-                        progress: 15
+                        progress: 2
+                    purchases:
+                      - business_category: "Electrónicos"
+                        commerce: "ElectroStore"
+                        points: 50
+                        purchase_datetime: "2024-01-30T12:30:00Z"
+                        total_purchase_price: 1000
+                      - business_category: "Ropa"
+                        commerce: "FashionMall"
+                        points: 30
+                        purchase_datetime: "2024-01-31T15:45:00Z"
+                        total_purchase_price: 500
+
         406:
           description: Not Acceptable
           content:
@@ -769,11 +804,6 @@ paths:
                     type: string
               example:
                 status: "Forbidden"
-        304:
-          description: Not Modified (Using ETag)
-          content:
-            plain:
-              example: ''
       deprecated: false
       security:
         - JWT: []
@@ -1133,6 +1163,14 @@ components:
           format: date
           description: Cierre de acumulación
           example: '2024-02-16'
+        overdue_days:
+          type: integer
+          description: Días de mora del cliente
+          example: 7
+        total_purchases:
+          type: integer
+          description: Total monto de compras
+          example: 1500
         challenges:
           type: array
           description: Desafíos activos
@@ -1169,7 +1207,33 @@ components:
                 type: integer
                 description: Número de progresos realizados hacia el desafío
                 example: 3
-
+        purchases:
+          type: array
+          description: Detalles de las compras
+          items:
+            type: object
+            properties:
+              business_category:
+                type: string
+                description: Categoría del comercio
+                example: "Electrónicos"
+              commerce:
+                type: string
+                description: Nombre del comercio
+                example: "ElectroStore"
+              points:
+                type: integer
+                description: Puntos obtenidos por la compra
+                example: 50
+              purchase_datetime:
+                type: string
+                format: iso8601
+                description: Fecha y hora de la compra
+                example: "2023-12-10T12:30:00Z"
+              total_purchase_price:
+                type: number
+                description: Precio total de la compra
+                example: 1000
     commerce_purchase_request:
       type: object
       properties:
