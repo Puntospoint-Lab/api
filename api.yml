@@ -716,7 +716,7 @@ paths:
                     billing_ended_at: '2024-02-20'
                     closure_started_at: '2024-01-17'
                     closure_ended_at: '2024-02-16'
-                    total_purchases: 1500
+                    total_points_purchases: 1500
                     overdue_days: 0
                     challenges:
                       - id: 1
@@ -756,7 +756,7 @@ paths:
                     closure_started_at: '2024-01-17'
                     closure_ended_at: '2024-02-16'
                     overdue_days: 0
-                    total_purchases: 1500
+                    total_points_purchases: 1500
                     challenges:
                       - id: 1
                         type: daily_purchase
@@ -1179,7 +1179,7 @@ components:
           type: integer
           description: Días de mora del cliente
           example: 7
-        total_purchases:
+        total_points_purchases:
           type: integer
           description: Total monto de compras
           example: 1500
