@@ -731,12 +731,14 @@ paths:
                             operator: "=="
                             value: "ABIERTA"
                     purchases:
-                      - business_category: "Electrónicos"
+                      - id: 1
+                        business_category: "Electrónicos"
                         commerce: "ElectroStore"
                         points: 50
                         purchase_datetime: "2024-01-30T12:30:00Z"
                         total_purchase_price: 1000
-                      - business_category: "Ropa"
+                      - id: 2
+                        business_category: "Ropa"
                         commerce: "FashionMall"
                         points: 30
                         purchase_datetime: "2024-01-31T15:45:00Z"
@@ -768,12 +770,14 @@ paths:
                             operator: "=="
                             value: "ABIERTA"
                     purchases:
-                      - business_category: "Electrónicos"
+                      - id: 1
+                        business_category: "Electrónicos"
                         commerce: "ElectroStore"
                         points: 50
                         purchase_datetime: "2024-01-30T12:30:00Z"
                         total_purchase_price: 1000
-                      - business_category: "Ropa"
+                      - id: 2
+                        business_category: "Ropa"
                         commerce: "FashionMall"
                         points: 30
                         purchase_datetime: "2024-01-31T15:45:00Z"
@@ -1244,6 +1248,10 @@ components:
           items:
             type: object
             properties:
+              id:
+                type: number
+                description: ID de compra
+                example: 1
               business_category:
                 type: string
                 description: Categoría del comercio
