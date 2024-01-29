@@ -726,6 +726,10 @@ paths:
                         goal: 2
                         completed_at: "2024-01-31T15:45:00Z"
                         progress: 2
+                        conditions:
+                          - attribute: "TIPO_TARJETA"
+                            operator: "=="
+                            value: "ABIERTA"
                     purchases:
                       - business_category: "Electrónicos"
                         commerce: "ElectroStore"
@@ -759,6 +763,10 @@ paths:
                         goal: 20
                         completed_at: null
                         progress: 2
+                        conditions:
+                          - attribute: "TIPO_TARJETA"
+                            operator: "=="
+                            value: "ABIERTA"
                     purchases:
                       - business_category: "Electrónicos"
                         commerce: "ElectroStore"
@@ -1207,6 +1215,29 @@ components:
                 type: integer
                 description: Número de progresos realizados hacia el desafío
                 example: 3
+              conditions:
+                type: array
+                description: Condiciones del desafío
+                items:
+                  type: object
+                  properties:
+                    attribute:
+                      type: string
+                      description: Atributo a comparar
+                      example: "TIPO_TARJETA"
+                    type:
+                      type: string
+                      enum:
+                        - "=="
+                        - "!="
+                        - "in?"
+                        - "not_in?"
+                        - "between?"
+                      description: Tipo de comparación
+                    value:
+                      type: string
+                      description: Valor a comparar
+                      example: "ABIERTA"
         purchases:
           type: array
           description: Detalles de las compras
