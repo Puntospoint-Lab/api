@@ -816,6 +816,18 @@ paths:
                     type: string
               example:
                 status: "Forbidden"
+        400:
+          description: Solicitud incorrecta
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+              example:
+                errors:
+                  closure_month: "Mes de cierre debe tener el formato YYYY-MM"
       deprecated: false
       security:
         - JWT: []
